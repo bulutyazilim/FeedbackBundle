@@ -1,0 +1,3 @@
+okulbilisim_feedback_homepage:
+    path:     /
+    defaults: { _controller: OkulbilisimFeedbackBundle:Default:index }

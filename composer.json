@@ -1,0 +1,22 @@
+{
+    "name": "okulbilisim/feedback-bundle",
+    "license": "MIT",
+    "type": "project",
+    "description": "Symfony bunlde for user feedback",
+    "version": "0.0.1",
+    "keywords": [
+        "feedback",
+        "symfony"
+    ],
+    "support": {
+        "email": "info@okulbilisim.com"
+    },
+    "autoload": {
+        "psr-0": {
+            "OkulBilisim\\FeedbackBundle": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    }
+}
