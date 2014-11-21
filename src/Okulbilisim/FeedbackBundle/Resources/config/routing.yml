@@ -1,3 +1,11 @@
 okulbilisim_feedback_homepage:
     path:     /feedback/
-    defaults: { _controller: OkulbilisimFeedbackBundle:Default:index }
+    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:index }
+
+okulbilisim_feedback_inbox:
+    path:     /feedback/inbox
+    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:inbox }
+    
+okulbilisim_feedback_thread:
+    path:     /feedback/thread/{id}
+    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:thread }
