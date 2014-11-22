@@ -1,4 +1,5 @@
 Okulbilisim\FeedbackBundle\Entity\Feedback:
+    repositoryClass: Okulbilisim\FeedbackBundle\Entity\FeedbackRepository
     type: entity
     table: feedback
     id:
@@ -18,31 +19,10 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
             type: text
         created:
             type: datetime
-            nullable: true
-            gedmo:
-              timestampable:
-                on: create
         updated:
             type: datetime
-            gedmo:
-              timestampable:
-                on: update
-        deletedAt:
-            type: date
-            nullable: true
-        createdBy:
-           type: string
-           gedmo:
-             blameable:
-               on: create
-        updatedBy:
-           type: string
-           gedmo:
-             blameable:
-               on: update
-        deletedBy:
-           type: string
-           gedmo:
-             blameable:
-               on: update
+        deleted:
+            type: boolean
+            options:
+                default: false
     lifecycleCallbacks: {  }

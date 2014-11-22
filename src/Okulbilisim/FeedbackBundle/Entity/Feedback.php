@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Entity
  * @ORM\Table(name="feedback")
  */
-class Feedback {
+class Feedback
+{
 
     /**
      * @var string
@@ -40,13 +41,17 @@ class Feedback {
      * @Assert\NotBlank()
      */
     protected $body;
+    protected $created;
+    protected $updated;
+    protected $deleted;
 
     /**
      * Get the id
      * 
      * @return string
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -55,7 +60,8 @@ class Feedback {
      * 
      * @return string
      */
-    public function getBy() {
+    public function getBy()
+    {
         return $this->by;
     }
 
@@ -65,7 +71,8 @@ class Feedback {
      * @param string $by
      * @return Feedback
      */
-    public function setBy($by) {
+    public function setBy($by)
+    {
         $this->by = $by;
         return $this;
     }
@@ -75,7 +82,8 @@ class Feedback {
      * 
      * @return integer
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
@@ -85,10 +93,54 @@ class Feedback {
      * @param  integer
      * @return Feedback
      */
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+        return $this;
+    }
+
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created)
+    {
+        $this->created = $created;
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->deleted = true;
+    }
+
+    public function isDeleted()
+    {
+        return $this->deleted;
     }
 
 }
