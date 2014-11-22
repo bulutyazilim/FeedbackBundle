@@ -1,1 +1,14 @@
-{{"Hello"|trans}}
+<div id="feedback">
+    <div id="feedback-form" style="display:none;" class="col-xs-4 col-md-4 panel panel-default">
+        <form class="form panel-body">
+            <div class="form-group">
+                <input class="form-control" name="email" autofocus placeholder="{{"email"|trans}}" type="email" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="body" required placeholder="{{"msg"|trans}}" rows="5"></textarea>
+            </div>
+            <button class="btn btn-primary pull-right" type="submit">{{"send"|trans}}</button>
+        </form>
+    </div>
+    <div id="feedback-tab">{{"feedback"|trans}}</div>
+</div>
