@@ -1,0 +1,48 @@
+Okulbilisim\FeedbackBundle\Entity\Feedback:
+    type: entity
+    table: feedback
+    id:
+        id:
+            type: guid
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        status:
+            type: integer
+            length: 1
+        by:
+            type: string
+            length: 255
+        body:
+            type: text
+        created:
+            type: datetime
+            nullable: true
+            gedmo:
+              timestampable:
+                on: create
+        updated:
+            type: datetime
+            gedmo:
+              timestampable:
+                on: update
+        deletedAt:
+            type: date
+            nullable: true
+        createdBy:
+           type: string
+           gedmo:
+             blameable:
+               on: create
+        updatedBy:
+           type: string
+           gedmo:
+             blameable:
+               on: update
+        deletedBy:
+           type: string
+           gedmo:
+             blameable:
+               on: update
+    lifecycleCallbacks: {  }
