@@ -17,7 +17,7 @@ to `require` block of your composer.json
 
 ###Step 2
 
-```
+```bash
 composer update
 ```
 
@@ -26,7 +26,26 @@ composer update
 add this line to your app/AppKernel.php file
 
 ```
-new Okulbilisim\FeedbackBundle\OkulbilisimFeedbackBundle()
+<?php
+// app/AppKernel.php
+
+// ...
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+
+            new Okulbilisim\FeedbackBundle\OkulbilisimFeedbackBundle(),
+        );
+
+        // ...
+    }
+
+    // ...
+}
+
 ```
 
 ##Step 4
