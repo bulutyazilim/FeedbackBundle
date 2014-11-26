@@ -12,7 +12,16 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
         status:
             type: integer
             length: 1
-        by:
+        senderIp:
+            type: string
+            length: 255
+        referer:
+            type: string
+            length: 255
+        loggedUser:
+            type: integer
+            length: 11
+        email:
             type: string
             length: 255
         body:
@@ -25,4 +34,5 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
             type: boolean
             options:
                 default: false
+            nullable: true
     lifecycleCallbacks: {  }

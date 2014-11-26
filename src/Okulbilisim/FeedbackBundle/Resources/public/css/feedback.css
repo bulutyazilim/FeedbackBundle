@@ -44,6 +44,8 @@
 	-ms-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	transform: rotate(90deg);
+    border: 1px solid #111;
+    position: absolute;
 }
 
 #feedback-tab:hover {

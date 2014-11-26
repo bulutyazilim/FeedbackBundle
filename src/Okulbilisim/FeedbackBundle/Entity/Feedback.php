@@ -11,7 +11,9 @@ use Doctrine\ORM\Mapping as ORM,
  */
 class Feedback
 {
-
+    const STATUS_NONE = 0;
+    const STATUS_READ = 1;
+    const STATUS_DONE = 2;
     /**
      * @var string
      *
@@ -27,13 +29,6 @@ class Feedback
      */
     private $status;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    protected $by;
 
     /**
      * @var text
@@ -47,7 +42,7 @@ class Feedback
 
     /**
      * Get the id
-     * 
+     *
      * @return string
      */
     public function getId()
@@ -55,31 +50,10 @@ class Feedback
         return $this->id;
     }
 
-    /**
-     * Get the name
-     * 
-     * @return string
-     */
-    public function getBy()
-    {
-        return $this->by;
-    }
-
-    /**
-     * Set the by
-     * 
-     * @param string $by
-     * @return Feedback
-     */
-    public function setBy($by)
-    {
-        $this->by = $by;
-        return $this;
-    }
 
     /**
      * Get the status
-     * 
+     *
      * @return integer
      */
     public function getStatus()
@@ -143,4 +117,139 @@ class Feedback
         return $this->deleted;
     }
 
+    /**
+     * @var string
+     */
+    private $senderIp;
+
+    /**
+     * @var string
+     */
+    private $referer;
+
+    /**
+     * @var integer
+     */
+    private $loggedUser;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+
+    /**
+     * Set senderIp
+     *
+     * @param string $senderIp
+     * @return Feedback
+     */
+    public function setSenderIp($senderIp)
+    {
+        $this->senderIp = $senderIp;
+
+        return $this;
+    }
+
+    /**
+     * Get senderIp
+     *
+     * @return string
+     */
+    public function getSenderIp()
+    {
+        return $this->senderIp;
+    }
+
+    /**
+     * Set referer
+     *
+     * @param string $referer
+     * @return Feedback
+     */
+    public function setReferer($referer)
+    {
+        $this->referer = $referer;
+
+        return $this;
+    }
+
+    /**
+     * Get referer
+     *
+     * @return string
+     */
+    public function getReferer()
+    {
+        return $this->referer;
+    }
+
+    /**
+     * Set loggedUser
+     *
+     * @param integer $loggedUser
+     * @return Feedback
+     */
+    public function setLoggedUser($loggedUser)
+    {
+        $this->loggedUser = $loggedUser;
+
+        return $this;
+    }
+
+    /**
+     * Get loggedUser
+     *
+     * @return integer
+     */
+    public function getLoggedUser()
+    {
+        return $this->loggedUser;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Feedback
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     * @return Feedback
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
 }

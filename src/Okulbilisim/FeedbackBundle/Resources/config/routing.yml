@@ -1,5 +1,5 @@
 okulbilisim_feedback_homepage:
-    path:     /feedback/
+    path:     /feedback
     defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:index }
 
 okulbilisim_feedback_inbox:
