@@ -7,7 +7,7 @@ $(function () {
         var $form = $(this);
         $.ajax({
             type: 'POST',
-            url: '/feedback',
+            url: '/feedback/new',
             data: $form.serialize(),
             success: function () {
                 $("#feedback-form")

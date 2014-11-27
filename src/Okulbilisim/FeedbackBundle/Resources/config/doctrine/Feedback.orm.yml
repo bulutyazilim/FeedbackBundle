@@ -4,10 +4,10 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
     table: feedback
     id:
         id:
-            type: guid
+            type: integer
             id: true
             generator:
-                strategy: AUTO
+                strategy: IDENTITY
     fields:
         status:
             type: integer

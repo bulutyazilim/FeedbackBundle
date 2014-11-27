@@ -1,0 +1,54 @@
+{% extends admin_base_view %}
+{% block body -%}
+    <ul class="nav nav-tabs">
+        <li role="presentation" {% if status==0 %}class="active"{% endif %}>
+            <a href="{{ url('okulbilisim_feedback_homepage') }}">New Feedbacks</a>
+        </li>
+        <li role="presentation" {% if status==1 %}class="active"{% endif %}>
+            <a href="{{ url('okulbilisim_feedback_homepage',{status: 1}) }}">Is Readed</a>
+        </li>
+        <li role="presentation" {% if status==2 %}class="active"{% endif %}>
+            <a href="{{ url('okulbilisim_feedback_homepage',{status: 2}) }}">Is Done</a>
+        </li>
+    </ul>
+    <table class="table responsive-table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Ip</th>
+            <th>Page</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.senderIp }}</td>
+                <td>{{ entity.referer }}</td>
+                <td>
+                    <a href="#" class="feedback-show-content" data-content-id="{{ entity.id }}" title="Show content"><i
+                                class="fa fa-bars"></i></a>
+                    <a href="#" class="feedback-mark-as-read" data-content-id="{{ entity.id }}" title="Mark as read"><i
+                                class="fa fa-circle"></i></a>
+                    <a href="#" class="feedback-mark-as-done" data-content-id="{{ entity.id }}" title="Mark as done"><i
+                                class="fa fa-check-circle"></i></a>
+                    <a href="#" class="feedback-delete" data-content-id="{{ entity.id }}" title="Delete"><i
+                                class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            <tr id="entity_{{ entity.id }}" style="display: none">
+                <td colspan="5">
+                    {{ entity.body }}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5"><div class="alert alert-info">No content</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

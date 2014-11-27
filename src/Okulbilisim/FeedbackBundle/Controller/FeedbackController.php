@@ -10,7 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 class FeedbackController extends Controller
 {
 
-    public function indexAction(Request $request)
+    public function inboxAction()
+    {
+        return $this->render('OkulbilisimFeedbackBundle:Feedback:inbox.html.twig');
+    }
+
+    public function threadAction($threadId)
+    {
+        return $this->render('OkulbilisimFeedbackBundle:Feedback:thread.html.twig', array('threadId' => $threadId));
+    }
+
+    public function newAction(Request $request)
     {
         $email = $request->get('email');
         $body = $request->get('body');
@@ -28,25 +38,12 @@ class FeedbackController extends Controller
             ->setStatus(Feedback::STATUS_NONE)
             ->setCreated(new \DateTime())
             ->setUpdated(new \DateTime())
-
+            ->setDeleted(false)
         ;
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $em->persist($feedback);
         $em->flush();
-        return JsonResponse::create([
-            'status' => true
-        ]);
+        return JsonResponse::create(['status'=>true]);
     }
-
-    public function inboxAction()
-    {
-        return $this->render('OkulbilisimFeedbackBundle:Feedback:inbox.html.twig');
-    }
-
-    public function threadAction($threadId)
-    {
-        return $this->render('OkulbilisimFeedbackBundle:Feedback:thread.html.twig', array('threadId' => $threadId));
-    }
-
 }

@@ -1,6 +1,6 @@
 okulbilisim_feedback_homepage:
-    path:     /feedback
-    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:index }
+    path:     /feedback/{status}
+    defaults: { _controller: OkulbilisimFeedbackBundle:FeedbackAdmin:index,status: 0 }
 
 okulbilisim_feedback_inbox:
     path:     /feedback/inbox
@@ -9,3 +9,18 @@ okulbilisim_feedback_inbox:
 okulbilisim_feedback_thread:
     path:     /feedback/thread/{id}
     defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:thread }
+
+okulbilisim_feedback_new:
+    path:     /feedback/new
+    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:new }
+
+okulbilisim_feedback_delete:
+    path:     /admin/feedback/remove/{id}
+    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:delete }
+    methods: [DELETE]
+okulbilisim_feedback_mark_read:
+    path:     /admin/feedback/mark/read/{id}
+    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:markAs, type: 'read' }
+okulbilisim_feedback_mark_done:
+    path:     /admin/feedback/mark/done/{id}
+    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:markAs, type: 'done' }

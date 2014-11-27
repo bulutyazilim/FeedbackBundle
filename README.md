@@ -27,9 +27,11 @@ add this line to your app/AppKernel.php file
 
 ```
 <?php
+
 // app/AppKernel.php
 
 // ...
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -45,7 +47,6 @@ class AppKernel extends Kernel
 
     // ...
 }
-
 ```
 
 ##Step 4
@@ -58,3 +59,22 @@ feedback:
     prefix:   /
 ```
 
+## Step 5
+
+add configurations to app/config.yml
+
+```
+# Twig Configuration    
+twig:
+    globals:
+        admin_base_view: '::ojs_base.html.twig'
+```
+
+## Step 6
+
+add style and css files to your layout.
+
+```
+- @OkulbilisimFeedbackBundle/Resources/public/js/feedback.js
+- @OkulbilisimFeedbackBundle/Resources/public/js/admin.js
+- @OkulbilisimFeedbackBundle/Resources/public/js/feedback.css
