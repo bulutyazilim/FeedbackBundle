@@ -33,3 +33,6 @@
 # Composer PHAR
 /composer.phar
 /nbproject/
+
+#Idea
+.idea
