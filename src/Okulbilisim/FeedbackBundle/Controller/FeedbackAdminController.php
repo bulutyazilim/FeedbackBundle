@@ -8,6 +8,7 @@ namespace Okulbilisim\FeedbackBundle\Controller;
 use Okulbilisim\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller\Controller
@@ -65,5 +66,36 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
         $em->flush();
 
         return JsonResponse::create(['status' => true]);
+    }
+
+    public function replyAction(Request $request, Feedback $id)
+    {
+        $data = [];
+        $data['message'] = $id;
+        $data['toemail'] = $this->container->getParameter('system_email');
+
+        if ($request->isMethod('POST')) {
+            $this->sendMessage($request, $id);
+        }
+        return $this->render('OkulbilisimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
+    }
+
+    public function sendMessage(Request $request, Feedback $feedback)
+    {
+        $form = $request->get('message');
+        $mailer = $this->container->get('mailer');
+        $message = $mailer->createMessage()
+            ->setSubject($form['subject'])
+            ->setFrom($this->container->getParameter('system_email'))
+            ->setTo($feedback->getEmail())
+            ->setBody(
+                $this->container->get('twig')->render($this->container->getParameter('feedback_reply_mail_layout'), ['form' => $form, 'feedback' => $feedback])
+            )
+            ->setContentType('text/html');
+        $mailer->send($message);
+
+        /** @var Session $session */
+        $session = $this->container->get('session');
+        $session->getFlashBag()->add('success',$this->get('translator')->trans("Message send successfully."));
     }
 }

@@ -14,11 +14,11 @@
     <table class="table responsive-table table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Sender</th>
-            <th>Ip</th>
-            <th>Page</th>
-            <th>Actions</th>
+            <th>{{ 'ID'|trans }}</th>
+            <th>{{ 'Sender'|trans }}</th>
+            <th>{{ 'Ip'|trans }}</th>
+            <th>{{ 'Page'|trans }}</th>
+            <th>{{ 'Actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -29,24 +29,44 @@
                 <td>{{ entity.senderIp }}</td>
                 <td>{{ entity.referer }}</td>
                 <td>
-                    <a href="#" class="feedback-show-content" data-content-id="{{ entity.id }}" title="Show content"><i
+                    <a href="#" class="feedback-show-content" data-content-id="{{ entity.id }}"
+                       title="{{ "Show content"|trans }}"><i
                                 class="fa fa-bars"></i></a>
-                    <a href="#" class="feedback-mark-as-read" data-content-id="{{ entity.id }}" title="Mark as read"><i
+                    <a href="#" class="feedback-mark-as-read" data-content-id="{{ entity.id }}"
+                       title="{{ "Mark as read"|trans }}"><i
                                 class="fa fa-circle"></i></a>
-                    <a href="#" class="feedback-mark-as-done" data-content-id="{{ entity.id }}" title="Mark as done"><i
+                    <a href="#" class="feedback-mark-as-done" data-content-id="{{ entity.id }}"
+                       title="{{ "Mark as done"|trans }}"><i
                                 class="fa fa-check-circle"></i></a>
-                    <a href="#" class="feedback-delete" data-content-id="{{ entity.id }}" title="Delete"><i
+                    <a href="#" class="feedback-delete" data-content-id="{{ entity.id }}"
+                       title="{{ "Delete"|trans }}"><i
                                 class="fa fa-trash"></i></a>
                 </td>
             </tr>
             <tr id="entity_{{ entity.id }}" style="display: none">
                 <td colspan="5">
-                    {{ entity.body }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ entity.body }}
+                            <hr/>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-warning btn-xs"
+                               href="{{ url('okulbilisim_feedback_reply',{id: entity.id}) }}">
+                                <i class="fa fa-reply"></i> {{ "Reply"|trans }}
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
-            {% else %}
+        {% else %}
             <tr>
-                <td colspan="5"><div class="alert alert-info">No content</div></td>
+                <td colspan="5">
+                    <div class="alert alert-info">{{ "No content"|trans }}</div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

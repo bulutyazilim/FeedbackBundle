@@ -25,3 +25,6 @@ okulbilisim_feedback_mark_read:
 okulbilisim_feedback_mark_done:
     path:     /admin/feedback/mark/done/{id}
     defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:markAs, type: 'done' }
+okulbilisim_feedback_reply:
+    path:     /admin/feedback/reply/{id}
+    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:reply}
