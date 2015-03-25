@@ -1,1 +1,19 @@
-hello: Merhaba
+feedback.email: Eposta
+feedback.message: Mesaj
+feedback.send: Gönder
+feedback: Geribildirim
+feedback.list.new: Yeni Mesajlar
+feedback.list.read: Okunmuş Mesajlar
+feedback.list.done: Tamamlanmış Mesajlar
+feedback.id: ID
+feedback.sender: Gönderen
+feedback.category: Kategori
+feedback.ip: IP
+feedback.page: Sayfa
+feedback.actions: İşlemler
+feedback.show_content: İçeriği Göster
+feedback.markas.read: Okundu İşaretle
+feedback.markas.done: Tamamlandı İşaretle
+feedback.delete: Sil
+feedback.reply: Cevapla
+feedback.nocontent: İçerik Yok

@@ -252,4 +252,32 @@ class Feedback
     {
         return $this->body;
     }
+    /**
+     * @var integer
+     */
+    private $category;
+
+
+    /**
+     * Set category
+     *
+     * @param integer $category
+     * @return Feedback
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return integer 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

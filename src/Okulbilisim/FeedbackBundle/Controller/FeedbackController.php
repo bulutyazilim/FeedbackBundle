@@ -24,6 +24,7 @@ class FeedbackController extends Controller
     {
         $email = $request->get('email');
         $body = $request->get('body');
+        $category = $request->get('category');
         $referer = $request->headers->get('referer');
         $senderIp = $request->getClientIp();
         $loggedUser = $this->getUser() ? $this->getUser()->getId() : '';
@@ -36,6 +37,7 @@ class FeedbackController extends Controller
             ->setReferer($referer)
             ->setSenderIp($senderIp)
             ->setStatus(Feedback::STATUS_NONE)
+            ->setCategory($category)
             ->setCreated(new \DateTime())
             ->setUpdated(new \DateTime())
             ->setDeleted(false)

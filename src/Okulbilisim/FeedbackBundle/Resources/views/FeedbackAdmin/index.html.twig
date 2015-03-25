@@ -2,23 +2,24 @@
 {% block body -%}
     <ul class="nav nav-tabs">
         <li role="presentation" {% if status==0 %}class="active"{% endif %}>
-            <a href="{{ url('okulbilisim_feedback_homepage') }}">New Feedbacks</a>
+            <a href="{{ url('okulbilisim_feedback_homepage') }}">{{ "feedback.list.new"|trans }}</a>
         </li>
         <li role="presentation" {% if status==1 %}class="active"{% endif %}>
-            <a href="{{ url('okulbilisim_feedback_homepage',{status: 1}) }}">Is Readed</a>
+            <a href="{{ url('okulbilisim_feedback_homepage',{status: 1}) }}">{{ "feedback.list.read"|trans }}</a>
         </li>
         <li role="presentation" {% if status==2 %}class="active"{% endif %}>
-            <a href="{{ url('okulbilisim_feedback_homepage',{status: 2}) }}">Is Done</a>
+            <a href="{{ url('okulbilisim_feedback_homepage',{status: 2}) }}">{{ "feedback.list.done"|trans }}</a>
         </li>
     </ul>
     <table class="table responsive-table table-bordered">
         <thead>
         <tr>
-            <th>{{ 'ID'|trans }}</th>
-            <th>{{ 'Sender'|trans }}</th>
-            <th>{{ 'Ip'|trans }}</th>
-            <th>{{ 'Page'|trans }}</th>
-            <th>{{ 'Actions'|trans }}</th>
+            <th>{{ 'feedback.id'|trans }}</th>
+            <th>{{ 'feedback.sender'|trans }}</th>
+            <th>{{ 'feedback.category'|trans }}</th>
+            <th>{{ 'feedback.ip'|trans }}</th>
+            <th>{{ 'feedback.page'|trans }}</th>
+            <th>{{ 'feedback.actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -26,25 +27,26 @@
             <tr>
                 <td>{{ entity.id }}</td>
                 <td>{{ entity.email }}</td>
+                <td>{{ entity.category|feedback_category }}</td>
                 <td>{{ entity.senderIp }}</td>
                 <td>{{ entity.referer }}</td>
                 <td>
                     <a href="#" class="feedback-show-content" data-content-id="{{ entity.id }}"
-                       title="{{ "Show content"|trans }}"><i
+                       title="{{ "feedback.show_content"|trans }}"><i
                                 class="fa fa-bars"></i></a>
                     <a href="#" class="feedback-mark-as-read" data-content-id="{{ entity.id }}"
-                       title="{{ "Mark as read"|trans }}"><i
+                       title="{{ "feedback.markas.read"|trans }}"><i
                                 class="fa fa-circle"></i></a>
                     <a href="#" class="feedback-mark-as-done" data-content-id="{{ entity.id }}"
-                       title="{{ "Mark as done"|trans }}"><i
+                       title="{{ "feedback.markas.done"|trans }}"><i
                                 class="fa fa-check-circle"></i></a>
                     <a href="#" class="feedback-delete" data-content-id="{{ entity.id }}"
-                       title="{{ "Delete"|trans }}"><i
+                       title="{{ "feedback.delete"|trans }}"><i
                                 class="fa fa-trash"></i></a>
                 </td>
             </tr>
             <tr id="entity_{{ entity.id }}" style="display: none">
-                <td colspan="5">
+                <td colspan="6">
                     <div class="row">
                         <div class="col-md-12">
                             {{ entity.body }}
@@ -56,7 +58,7 @@
                         <div class="col-md-12">
                             <a class="btn btn-warning btn-xs"
                                href="{{ url('okulbilisim_feedback_reply',{id: entity.id}) }}">
-                                <i class="fa fa-reply"></i> {{ "Reply"|trans }}
+                                <i class="fa fa-reply"></i> {{ "feedback.reply"|trans }}
                             </a>
                         </div>
                     </div>
@@ -64,8 +66,8 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">
-                    <div class="alert alert-info">{{ "No content"|trans }}</div>
+                <td colspan="6">
+                    <div class="alert alert-info">{{ "feedback.nocontent"|trans }}</div>
                 </td>
             </tr>
         {% endfor %}

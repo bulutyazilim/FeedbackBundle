@@ -1,1 +1,19 @@
-hello: Hello
+feedback.email: Email
+feedback.message: Message
+feedback.send: Send
+feedback: Feedback
+feedback.list.new: New Messages
+feedback.list.read: Readed
+feedback.list.done: Done
+feedback.id: ID
+feedback.sender: Sender
+feedback.category: Category
+feedback.ip: IP
+feedback.page: Page
+feedback.actions: Actions
+feedback.show_content: Show Content
+feedback.markas.read: Mark as Read
+feedback.markas.done: Mark as Done
+feedback.delete: Delete
+feedback.reply: Reply
+feedback.nocontent: No Content

@@ -22,7 +22,8 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
         $data['status'] = $status;
         $data['entities'] = $entities;
-
+        $categories = $this->container->getParameter('feedback_categories');
+        $data['categories'] = $categories;
         return $this->render("OkulbilisimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }
 
