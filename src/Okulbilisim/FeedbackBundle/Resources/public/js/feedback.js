@@ -17,4 +17,9 @@ $(function () {
         });
         event.preventDefault();
     });
+    $("#feedback .btn-close").on('click',function(){
+        $("#feedback-form")
+            .toggle("slide");
+        return false;
+    })
 });

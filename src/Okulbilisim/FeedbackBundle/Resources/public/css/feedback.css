@@ -55,3 +55,8 @@
 #feedback-form textarea {
 	resize: none;
 }
+#feedback .btn-close{
+    position: absolute;
+    right: -8px;
+    top: -8px;
+}
