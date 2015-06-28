@@ -25,7 +25,7 @@ composer update
 
 add this line to your app/AppKernel.php file
 
-```
+```php
 <?php
 
 // app/AppKernel.php
@@ -53,7 +53,7 @@ class AppKernel extends Kernel
 
 import routing 
 
-```
+```yml
 feedback:
     resource: "@OkulbilisimFeedbackBundle/Resources/config/routing.yml"
     prefix:   /
@@ -63,7 +63,7 @@ feedback:
 
 add configurations to app/config.yml
 
-```
+```yml
 # Twig Configuration    
 twig:
     globals:
@@ -74,7 +74,7 @@ twig:
 
 add style and css files to your layout.
 
-```
+```yml
 - @OkulbilisimFeedbackBundle/Resources/public/js/feedback.js
 - @OkulbilisimFeedbackBundle/Resources/public/js/admin.js
 - @OkulbilisimFeedbackBundle/Resources/public/js/feedback.css
