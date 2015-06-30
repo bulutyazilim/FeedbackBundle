@@ -1,8 +1,5 @@
 <?php
-/**
- * Date: 27.11.14
- * Time: 11:23
- */
+
 
 namespace Okulbilisim\FeedbackBundle\Twig;
 

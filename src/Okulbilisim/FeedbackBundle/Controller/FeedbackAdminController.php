@@ -1,8 +1,5 @@
 <?php
-/**
- * Date: 27.11.14
- * Time: 10:43
- */
+
 namespace Okulbilisim\FeedbackBundle\Controller;
 
 use Okulbilisim\FeedbackBundle\Entity\Feedback;
