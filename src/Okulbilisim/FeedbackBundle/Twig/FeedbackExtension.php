@@ -27,6 +27,15 @@ class FeedbackExtension extends \Twig_Extension
     /**
      * @return array
      */
+    public function getFunctions()
+    {
+        return [
+            new \Twig_SimpleFunction('feedback_widget',[$this,'widget'])
+        ];
+    }
+    /**
+     * @return array
+     */
     public function getFilters()
     {
         return [
@@ -60,6 +69,15 @@ class FeedbackExtension extends \Twig_Extension
             return $user;
         }
         //@todo user entity ???
+    }
+
+    public function widget()
+    {
+        $data = [];
+        $data['categories'] = $this->container->getParameter('feedback_categories');
+        $twig = $this->container->get('twig');
+        $content= $twig->render('OkulbilisimFeedbackBundle:Feedback:index.html.twig',$data);
+        return $content;
     }
 
     /**
