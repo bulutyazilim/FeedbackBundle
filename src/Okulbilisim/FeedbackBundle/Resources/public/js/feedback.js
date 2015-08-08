@@ -1,6 +1,8 @@
 $(function () {
     $("#feedback-tab").click(function () {
-        $("#feedback").width('100%');
+        if($(window).width() < 361) {
+            $("#feedback").width('100%');
+        }
         $("#feedback-form").toggle("slide");
     });
 
