@@ -10,18 +10,13 @@ FeedbackBundle for Symfony 2
 
 add
 ```
-"okulbilisim/feedback-bundle":"dev-master"
+composer require --dev "okulbilisim/feedback-bundle":"dev-master"
+
 ```
 
 to `require` block of your composer.json
 
 ###Step 2
-
-```bash
-composer update
-```
-
-###Step 3
 
 add this line to your app/AppKernel.php file
 
@@ -49,7 +44,7 @@ class AppKernel extends Kernel
 }
 ```
 
-##Step 4
+##Step 3
 
 import routing 
 
@@ -59,7 +54,7 @@ feedback:
     prefix:   /
 ```
 
-## Step 5
+## Step 4
 
 add configurations to app/config.yml
 
@@ -70,7 +65,7 @@ twig:
         admin_base_view: '::ojs_base.html.twig'
 ```
 
-## Step 6
+## Step 5
 
 add style and css files to your layout.
 
