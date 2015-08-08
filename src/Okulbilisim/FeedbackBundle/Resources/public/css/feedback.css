@@ -60,3 +60,29 @@
     right: -8px;
     top: -8px;
 }
+
+@media (max-width: 360px) {
+	#feedback {
+		width: 100%;
+		height: 100%;
+	}
+	#feedback-form {
+		width: 100%;
+		padding-top: 30px;
+	}
+	#feedback-form .btn-close i {
+		font-size: 3em;
+	}
+	#feedback-tab {
+		font-size: 16px;
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+		margin: 0;
+		bottom: 0;
+		height: 35px;
+		width: 100px;
+	}
+}
