@@ -1,5 +1,6 @@
 $(function () {
     $("#feedback-tab").click(function () {
+        $("#feedback").width('100%');
         $("#feedback-form").toggle("slide");
     });
 
@@ -20,6 +21,7 @@ $(function () {
     $("#feedback .btn-close").on('click',function(){
         $("#feedback-form")
             .toggle("slide");
+        $("#feedback").width('');
         return false;
     })
 });
