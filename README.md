@@ -72,4 +72,4 @@ add style and css files to your layout.
 ```yml
 - @OkulbilisimFeedbackBundle/Resources/public/js/feedback.js
 - @OkulbilisimFeedbackBundle/Resources/public/js/admin.js
-- @OkulbilisimFeedbackBundle/Resources/public/js/feedback.css
+- @OkulbilisimFeedbackBundle/Resources/public/css/feedback.css
