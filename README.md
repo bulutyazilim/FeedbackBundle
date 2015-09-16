@@ -73,3 +73,27 @@ add style and css files to your layout.
 - @OkulbilisimFeedbackBundle/Resources/public/js/feedback.js
 - @OkulbilisimFeedbackBundle/Resources/public/js/admin.js
 - @OkulbilisimFeedbackBundle/Resources/public/css/feedback.css
+```
+
+## Step 6
+
+add parameters.yml following lines
+```yml
+feedback_categories:
+        -
+            id: 1
+            name: "General"
+        -
+            id: 2
+            name: "Bug Report"
+        -
+            id: 3
+            name: "Idea"
+```
+
+## step 7
+
+add following before `</body>` in your twig file
+```
+{{ feedback_widget()|raw }}
+```
