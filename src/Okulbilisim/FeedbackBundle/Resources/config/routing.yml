@@ -2,7 +2,7 @@
 okulbilisim_feedback_new:
     path:     /feedback/new
     defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:new }
- 
+
 okulbilisim_feedback_homepage:
     path:     /feedback/{status}
     defaults: { _controller: OkulbilisimFeedbackBundle:FeedbackAdmin:index,status: 0 }
@@ -10,10 +10,6 @@ okulbilisim_feedback_homepage:
 okulbilisim_feedback_inbox:
     path:     /feedback/inbox
     defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:inbox }
-    
-okulbilisim_feedback_thread:
-    path:     /feedback/thread/{id}
-    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:thread }
 
 okulbilisim_feedback_delete:
     path:     /admin/feedback/remove/{id}
