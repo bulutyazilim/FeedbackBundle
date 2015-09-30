@@ -85,3 +85,9 @@
 		width: 100px;
 	}
 }
+
+@media print {
+	#feedback, #feedback * {
+		display: none !important;
+	}
+}
