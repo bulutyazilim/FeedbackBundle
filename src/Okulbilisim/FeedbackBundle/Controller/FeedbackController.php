@@ -20,6 +20,7 @@ class FeedbackController extends Controller
         $email = $request->get('email');
         $body = $request->get('body');
         $category = $request->get('category');
+        $screenshot = $request->get('screenshot') ?: null;
         $referer = $request->headers->get('referer');
         $senderIp = $request->getClientIp();
         $loggedUser = $this->getUser() ? $this->getUser()->getId() : '';
@@ -37,6 +38,11 @@ class FeedbackController extends Controller
             ->setUpdated(new \DateTime())
             ->setDeleted(false)
         ;
+
+        if ($screenshot) {
+            $feedback->setScreenshot($screenshot);
+        }
+
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $em->persist($feedback);

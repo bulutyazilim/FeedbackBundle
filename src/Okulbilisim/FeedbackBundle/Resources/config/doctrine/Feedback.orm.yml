@@ -26,6 +26,9 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
             length: 255
         body:
             type: text
+        screenshot:
+            type: text
+            nullable: true
         category:
             type: integer
             nullable: false

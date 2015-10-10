@@ -1,6 +1,7 @@
 feedback.email: Eposta
 feedback.message: Mesaj
 feedback.send: Gönder
+feedback.takescreenshot: 'Ekran Görüntüsü Al'
 feedback: Geribildirim
 feedback.list.new: Yeni Mesajlar
 feedback.list.read: Okunmuş Mesajlar
@@ -17,3 +18,9 @@ feedback.markas.done: Tamamlandı İşaretle
 feedback.delete: Sil
 feedback.reply: Cevapla
 feedback.nocontent: İçerik Yok
+feedback.wait: 'Lütfen Bekleyiniz'
+feedback.thank: 'Teşekkürler'
+feedback.thank_long: 'Bildiriminiz bize ulaştı. En kısa sürede sizinle iletişime geçeceğiz.'
+feedback.close: 'close'
+feedback.fail: 'Tüh!'
+feedback.fail_long: 'Bildiriminiz bize iletilmemiş görünüyor.<br><br>Eski yöntemlerle bize ulaşmayı deneyin lütfen.'

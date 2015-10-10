@@ -1,6 +1,7 @@
 feedback.email: Email
 feedback.message: Message
 feedback.send: Send
+feedback.takescreenshot: 'Take Screenshot'
 feedback: Feedback
 feedback.list.new: New Messages
 feedback.list.read: Readed
@@ -17,3 +18,9 @@ feedback.markas.done: Mark as Done
 feedback.delete: Delete
 feedback.reply: Reply
 feedback.nocontent: No Content
+feedback.wait: 'Please wait...'
+feedback.close: 'close'
+feedback.thank: 'Thank you!'
+feedback.thank_long: 'Your submission has been received, we will review it shortly.'
+feedback.fail: 'Oh no!'
+feedback.fail_long: 'It looks like your submission was not sent.<br><br>Try contacting us by the old method.'

@@ -2,8 +2,8 @@
 
 namespace Okulbilisim\FeedbackBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM,
-    Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -28,6 +28,12 @@ class Feedback
      * @Expose
      */
     private $status;
+
+    /**
+     * @var screenshot
+     *
+     */
+    protected $screenshot;
 
 
     /**
@@ -252,6 +258,7 @@ class Feedback
     {
         return $this->body;
     }
+
     /**
      * @var integer
      */
@@ -274,10 +281,26 @@ class Feedback
     /**
      * Get category
      *
-     * @return integer 
+     * @return integer
      */
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @return screenshot
+     */
+    public function getScreenshot()
+    {
+        return $this->screenshot;
+    }
+
+    /**
+     * @param screenshot $screenshot
+     */
+    public function setScreenshot($screenshot)
+    {
+        $this->screenshot = $screenshot;
     }
 }

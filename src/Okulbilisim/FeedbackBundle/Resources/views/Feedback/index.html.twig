@@ -1,22 +1,63 @@
-<div id="feedback">
-    <div id="feedback-form" style="display:none;" class="col-xs-4 col-md-4 panel panel-default">
-        <a class="btn btn-close" href="#"><i class="fa fa-close"></i></a>
-        <form class="form panel-body">
-            <div class="form-group">
-                <select class="form-control" name="category" id="category" required="required" >
-                    {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <input class="form-control" name="email" autofocus placeholder="{{"feedback.email"|trans}}" type="email" required="required" />
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" name="body" required="required" placeholder="{{"feedback.message"|trans}}" rows="5"></textarea>
-            </div>
-            <button class="btn btn-primary pull-right" type="submit">{{"feedback.send"|trans}}</button>
-        </form>
+<div id="feedback_wrapper_div" class="left">
+    <div class="tooltips">
+        <div class="btn-group dropup">
+            <button id="feedback-button" type="button" class="btn dropdown-toggle btn-circle btn-lg"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-commenting-o fa-2x" title="Report Bug"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
+                <li>
+                    <div class="report">
+                        <button id="close-button" class="btn btn-danger btn-sm do-close"><i class="fa fa-close"></i>
+                        </button>
+                        <h2 class="text-center">{{ "feedback"|trans }}</h2>
+
+                        <form class="doo" method="post" action="/feedback/new">
+                            <div class="col-sm-12">
+                                <select class="form-control input-sm" name="category" id="category" required="required">
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input class="form-control" name="email" autofocus
+                                       placeholder="{{ "feedback.email"|trans }}" type="email" required/>
+                                <textarea required name="body" class="form-control"
+                                          placeholder="{{ "feedback.message"|trans }}"></textarea>
+                                <input name="screenshot" type="hidden" class="screen-uri">
+                                <span class="screenshot pull-right"><i class="fa fa-camera cam"
+                                                                       title="{{ "feedback.email"|trans }}"></i></span>
+                            </div>
+                            <div class="col-sm-12 clearfix">
+                                <button class="btn btn-primary btn-block">{{ "feedback.send"|trans }}</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="loading text-center hideme">
+                        <h2>{{ "feedback.wait"|trans }}</h2>
+
+                        <h2><i class="fa fa-refresh fa-spin"></i></h2>
+                    </div>
+                    <div class="reported text-center hideme">
+                        <h2>{{ "feedback.thank"|trans }}</h2>
+
+                        <p>{{ "feedback.thank_long"|trans }}</p>
+
+                        <div class="col-sm-12 clearfix">
+                            <button class="btn btn-success btn-block do-close">{{ "feedback.close"|trans }}</button>
+                        </div>
+                    </div>
+                    <div class="failed text-center hideme">
+                        <h2>{{ "feedback.fail"|trans }}</h2>
+
+                        <p>{{ "feedback.fail_long"|trans }}</a></p>
+
+                        <div class="col-sm-12 clearfix">
+                            <button class="btn btn-danger btn-block do-close">{{ "feedback.close"|trans }}</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="feedback-tab">{{"feedback"|trans}}</div>
 </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
