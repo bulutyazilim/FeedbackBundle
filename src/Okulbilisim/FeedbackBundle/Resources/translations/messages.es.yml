@@ -1,0 +1,27 @@
+feedback.email: Email
+feedback.message: Mensaje
+feedback.send: Enviar
+feedback.takescreenshot: 'Capturar pantalla'
+feedback: Feedback
+feedback.list.new: Mensajes nuevos
+feedback.list.read: Leídos
+feedback.list.done: Listo
+feedback.id: ID
+feedback.sender: Remitente
+feedback.category: Categoría
+feedback.ip: IP
+feedback.page: Página
+feedback.actions: Acciones
+feedback.show_content: Mostrar contenido
+feedback.markas.read: Marcar como leído
+feedback.markas.done: Marcar como listo
+feedback.delete: Eliminar
+feedback.reply: Responder
+feedback.nocontent: Sin contenido
+feedback.wait: 'Por favor espere...'
+feedback.close: 'cerrar'
+feedback.thank: 'Gracias!'
+feedback.thank_long: 'Tu feedback ha sido recibido, lo revisaremos pronto.'
+feedback.fail: 'Oh no!'
+feedback.fail_long: 'It looks like your submission was not sent.<br><br>Try contacting us by the old method.'
+feedback.fail_long: 'Parece que tu feedback no fue enviado.<br><br>Intenta contactarnos de la forma antigua.'
