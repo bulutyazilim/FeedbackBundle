@@ -23,7 +23,7 @@ class FeedbackController extends Controller
         $screenshot = $request->get('screenshot') ?: null;
         $referer = $request->headers->get('referer');
         $senderIp = $request->getClientIp();
-        $loggedUser = $this->getUser() ? $this->getUser()->getId() : '';
+        $loggedUser = $this->getUser() ? $this->getUser()->getId() : null;
 
         $feedback = new Feedback();
         $feedback
