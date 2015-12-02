@@ -52,7 +52,7 @@
                             {{ entity.body }}
 
                             <hr/>
-                            {% if entity.screenshot is defined %}
+                            {% if entity.screenshot is not null %}
                                 <img src="{{ entity.screenshot }}"/>
                             {% endif %}
                         </div>
