@@ -21,6 +21,7 @@ Okulbilisim\FeedbackBundle\Entity\Feedback:
         loggedUser:
             type: integer
             length: 11
+            nullable: true
         email:
             type: string
             length: 255
