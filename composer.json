@@ -13,9 +13,10 @@
     },
     "autoload": {
         "psr-0": {
-            "Okulbilisim\\FeedbackBundle": "src/"
+            "Okulbilisim\\FeedbackBundle": ""
         }
     },
+    "target-dir": "Okulbilisim/FeedbackBundle",
     "require": {
         "php": ">=5.4"
     }
