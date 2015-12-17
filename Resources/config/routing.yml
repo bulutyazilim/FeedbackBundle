@@ -1,26 +1,26 @@
 
 okulbilisim_feedback_new:
     path:     /feedback/new
-    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:new }
+    defaults: { _controller: "OkulbilisimFeedbackBundle:Feedback:new" }
 
 okulbilisim_feedback_homepage:
     path:     /feedback/{status}
-    defaults: { _controller: OkulbilisimFeedbackBundle:FeedbackAdmin:index,status: 0 }
+    defaults: { _controller: "OkulbilisimFeedbackBundle:FeedbackAdmin:index",status: 0 }
 
 okulbilisim_feedback_inbox:
     path:     /feedback/inbox
-    defaults: { _controller: OkulbilisimFeedbackBundle:Feedback:inbox }
+    defaults: { _controller: "OkulbilisimFeedbackBundle:Feedback:inbox" }
 
 okulbilisim_feedback_delete:
     path:     /admin/feedback/remove/{id}
-    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:delete }
+    defaults: {_controller: "OkulbilisimFeedbackBundle:FeedbackAdmin:delete" }
     methods: [DELETE]
 okulbilisim_feedback_mark_read:
     path:     /admin/feedback/mark/read/{id}
-    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:markAs, type: 'read' }
+    defaults: {_controller: "OkulbilisimFeedbackBundle:FeedbackAdmin:markAs", type: 'read' }
 okulbilisim_feedback_mark_done:
     path:     /admin/feedback/mark/done/{id}
-    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:markAs, type: 'done' }
+    defaults: {_controller: "OkulbilisimFeedbackBundle:FeedbackAdmin:markAs", type: 'done' }
 okulbilisim_feedback_reply:
     path:     /admin/feedback/reply/{id}
-    defaults: {_controller: OkulbilisimFeedbackBundle:FeedbackAdmin:reply}
+    defaults: {_controller: "OkulbilisimFeedbackBundle:FeedbackAdmin:reply"}
