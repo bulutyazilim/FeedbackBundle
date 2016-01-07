@@ -1,9 +1,9 @@
 services:
 #    okulbilisim_feedback.example:
-#        class: Okulbilisim\FeedbackBundle\Example
+#        class: OkulBilisim\FeedbackBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
   okulbilisim_feedback.extension:
-    class: Okulbilisim\FeedbackBundle\Twig\FeedbackExtension
+    class: OkulBilisim\FeedbackBundle\Twig\FeedbackExtension
     arguments: ["@service_container","@security.context"]
     tags:
       - { name: twig.extension }

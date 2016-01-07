@@ -15,13 +15,13 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
         if ($status < 0 || $status > 2)
             $status = 0;
         $data = [];
-        $repo = $this->getDoctrine()->getManager()->getRepository('OkulbilisimFeedbackBundle:Feedback');
+        $repo = $this->getDoctrine()->getManager()->getRepository('OkulBilisimFeedbackBundle:Feedback');
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
         $data['status'] = $status;
         $data['entities'] = $entities;
         $categories = $this->container->getParameter('feedback_categories');
         $data['categories'] = $categories;
-        return $this->render("OkulbilisimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
+        return $this->render("OkulBilisimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }
 
     public function deleteAction(Request $request, $id)
@@ -31,7 +31,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("OkulbilisimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find("OkulBilisimFeedbackBundle:Feedback", $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -49,7 +49,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("OkulbilisimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find("OkulBilisimFeedbackBundle:Feedback", $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -75,7 +75,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
         if ($request->isMethod('POST')) {
             $this->sendMessage($request, $id);
         }
-        return $this->render('OkulbilisimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
+        return $this->render('OkulBilisimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
     }
 
     public function sendMessage(Request $request, Feedback $feedback)

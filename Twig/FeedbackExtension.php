@@ -1,6 +1,5 @@
 <?php
 
-
 namespace OkulBilisim\FeedbackBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
@@ -9,7 +8,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * Class FeedbackExtension
- * @package Okulbilisim\FeedbackBundle\Twig
+ * @package OkulBilisim\FeedbackBundle\Twig
  */
 class FeedbackExtension extends \Twig_Extension
 {

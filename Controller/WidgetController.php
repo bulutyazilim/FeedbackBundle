@@ -20,6 +20,6 @@ class WidgetController extends Controller
             throw new InvalidConfigurationException("The parameter 'feedback_categories' must be defined.");
         $data = [];
         $data['categories'] = $categories;
-        return $this->render('OkulbilisimFeedbackBundle:Feedback:index.html.twig',$data);
+        return $this->render('OkulBilisimFeedbackBundle:Feedback:index.html.twig',$data);
     }
 }

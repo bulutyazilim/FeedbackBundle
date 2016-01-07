@@ -12,7 +12,7 @@ class FeedbackController extends Controller
 
     public function inboxAction()
     {
-        return $this->render('OkulbilisimFeedbackBundle:Feedback:inbox.html.twig');
+        return $this->render('OkulBilisimFeedbackBundle:Feedback:inbox.html.twig');
     }
 
     public function newAction(Request $request)
