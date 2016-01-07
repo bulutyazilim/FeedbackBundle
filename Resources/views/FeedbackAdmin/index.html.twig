@@ -53,7 +53,9 @@
 
                             <hr/>
                             {% if entity.screenshot is not null %}
-                                <img src="{{ entity.screenshot }}"/>
+                                <a href="{{ entity.screenshot }}" target="_blank">
+                                    <img src="{{ entity.screenshot }}" class="admin-screenshot-preview-image"/>
+                                </a>
                             {% endif %}
                         </div>
 

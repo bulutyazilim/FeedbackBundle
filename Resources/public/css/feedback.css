@@ -88,3 +88,8 @@
 	right: 1px;
 	position: absolute;
 }
+
+.admin-screenshot-preview-image{
+	max-height: 150px;
+	max-width: 200px;
+}
