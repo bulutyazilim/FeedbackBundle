@@ -75,7 +75,7 @@ class FeedbackExtension extends \Twig_Extension
         $data = [];
         $data['categories'] = $this->container->getParameter('feedback_categories');
         $twig = $this->container->get('twig');
-        $content= $twig->render('OkulbilisimFeedbackBundle:Feedback:index.html.twig',$data);
+        $content= $twig->render('OkulBilisimFeedbackBundle:Feedback:index.html.twig',$data);
         return $content;
     }
 

@@ -36,7 +36,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new Okulbilisim\FeedbackBundle\OkulbilisimFeedbackBundle(),
+            new OkulBilisim\FeedbackBundle\OkulBilisimFeedbackBundle(),
         );
 
         // ...
@@ -52,7 +52,7 @@ import routing
 
 ```yml
 feedback:
-    resource: "@OkulbilisimFeedbackBundle/Resources/config/routing.yml"
+    resource: "@OkulBilisimFeedbackBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
@@ -72,9 +72,9 @@ twig:
 add style and css files to your layout.
 
 ```yml
-- @OkulbilisimFeedbackBundle/Resources/public/js/feedback.js
-- @OkulbilisimFeedbackBundle/Resources/public/js/admin.js
-- @OkulbilisimFeedbackBundle/Resources/public/css/feedback.css
+- @OkulBilisimFeedbackBundle/Resources/public/js/feedback.js
+- @OkulBilisimFeedbackBundle/Resources/public/js/admin.js
+- @OkulBilisimFeedbackBundle/Resources/public/css/feedback.css
 ```
 
 ## Step 6
