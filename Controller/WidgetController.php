@@ -1,6 +1,6 @@
 <?php
 
-namespace Okulbilisim\FeedbackBundle\Controller;
+namespace OkulBilisim\FeedbackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;

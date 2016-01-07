@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Okulbilisim\FeedbackBundle\Twig;
+namespace OkulBilisim\FeedbackBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;

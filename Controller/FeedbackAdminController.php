@@ -1,6 +1,6 @@
 <?php
 
-namespace Okulbilisim\FeedbackBundle\Controller;
+namespace OkulBilisim\FeedbackBundle\Controller;
 
 use Okulbilisim\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\HttpFoundation\JsonResponse;

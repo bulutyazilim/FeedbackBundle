@@ -12,8 +12,8 @@
         "email": "info@okulbilisim.com"
     },
     "autoload": {
-        "psr-0": {
-            "OkulBilisim\\FeedbackBundle": ""
+        "psr-4": {
+            "OkulBilisim\\FeedbackBundle\\": ""
         }
     },
     "require": {

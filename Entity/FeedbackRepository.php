@@ -1,6 +1,6 @@
 <?php
 
-namespace Okulbilisim\FeedbackBundle\Entity;
+namespace OkulBilisim\FeedbackBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
