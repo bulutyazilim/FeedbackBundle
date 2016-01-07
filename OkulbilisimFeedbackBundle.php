@@ -1,9 +1,9 @@
 <?php
 
-namespace Okulbilisim\FeedbackBundle;
+namespace OkulBilisim\FeedbackBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class OkulbilisimFeedbackBundle extends Bundle
+class OkulBilisimFeedbackBundle extends Bundle
 {
 }
