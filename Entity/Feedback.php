@@ -30,14 +30,14 @@ class Feedback
     private $status;
 
     /**
-     * @var screenshot
+     * @var string
      *
      */
     protected $screenshot;
 
 
     /**
-     * @var text
+     * @var string
      *
      * @Assert\NotBlank()
      */
@@ -289,7 +289,7 @@ class Feedback
     }
 
     /**
-     * @return screenshot
+     * @return string
      */
     public function getScreenshot()
     {
@@ -297,7 +297,7 @@ class Feedback
     }
 
     /**
-     * @param screenshot $screenshot
+     * @param string $screenshot
      */
     public function setScreenshot($screenshot)
     {
