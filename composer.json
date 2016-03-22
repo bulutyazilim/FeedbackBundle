@@ -1,5 +1,5 @@
 {
-    "name": "okulbilisim/feedback-bundle",
+    "name": "bulutyazilim/feedback-bundle",
     "license": "MIT",
     "type": "project",
     "description": "Symfony bundle for user feedback",
