@@ -1,6 +1,6 @@
 services:
   bulutyazilim_feedback.extension:
     class: BulutYazilim\FeedbackBundle\Twig\FeedbackExtension
-    arguments: ["@service_container","@security.context"]
+    arguments: ["@service_container"]
     tags:
       - { name: twig.extension }

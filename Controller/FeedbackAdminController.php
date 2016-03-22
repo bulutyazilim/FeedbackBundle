@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class FeedbackAdminController extends Controller
 {
-    public function indexAction(Request $request, $status = 0)
+    public function indexAction($status = 0)
     {
         if ($status < 0 || $status > 2)
             $status = 0;

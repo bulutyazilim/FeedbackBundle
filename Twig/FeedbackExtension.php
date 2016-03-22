@@ -4,7 +4,6 @@ namespace BulutYazilim\FeedbackBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * Class FeedbackExtension
@@ -17,7 +16,7 @@ class FeedbackExtension extends \Twig_Extension
 
     /** @var  ContainerInterface */
     private $container;
-    public function __construct(ContainerInterface $container, SecurityContext $context)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
         $this->em = $container->get('doctrine.orm.entity_manager');
