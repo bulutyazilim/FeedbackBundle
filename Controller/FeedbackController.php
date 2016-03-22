@@ -1,8 +1,8 @@
 <?php
 
-namespace OkulBilisim\FeedbackBundle\Controller;
+namespace BulutYazilim\FeedbackBundle\Controller;
 
-use Okulbilisim\FeedbackBundle\Entity\Feedback;
+use BulutYazilim\FeedbackBundle\Entity\Feedback;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ class FeedbackController extends Controller
 
     public function inboxAction()
     {
-        return $this->render('OkulBilisimFeedbackBundle:Feedback:inbox.html.twig');
+        return $this->render('BulutYazilimFeedbackBundle:Feedback:inbox.html.twig');
     }
 
     public function newAction(Request $request)

@@ -1,5 +1,5 @@
-OkulBilisim\FeedbackBundle\Entity\Feedback:
-    repositoryClass: OkulBilisim\FeedbackBundle\Entity\FeedbackRepository
+BulutYazilim\FeedbackBundle\Entity\Feedback:
+    repositoryClass: BulutYazilim\FeedbackBundle\Entity\FeedbackRepository
     type: entity
     table: feedback
     id:

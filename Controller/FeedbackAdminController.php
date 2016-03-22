@@ -1,27 +1,28 @@
 <?php
 
-namespace OkulBilisim\FeedbackBundle\Controller;
+namespace BulutYazilim\FeedbackBundle\Controller;
 
-use Okulbilisim\FeedbackBundle\Entity\Feedback;
+use BulutYazilim\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller\Controller
+class FeedbackAdminController extends Controller
 {
     public function indexAction(Request $request, $status = 0)
     {
         if ($status < 0 || $status > 2)
             $status = 0;
         $data = [];
-        $repo = $this->getDoctrine()->getManager()->getRepository('OkulBilisimFeedbackBundle:Feedback');
+        $repo = $this->getDoctrine()->getManager()->getRepository('BulutYazilimFeedbackBundle:Feedback');
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
         $data['status'] = $status;
         $data['entities'] = $entities;
         $categories = $this->container->getParameter('feedback_categories');
         $data['categories'] = $categories;
-        return $this->render("OkulBilisimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
+        return $this->render("BulutYazilimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }
 
     public function deleteAction(Request $request, $id)
@@ -31,7 +32,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("OkulBilisimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find("BulutYazilimFeedbackBundle:Feedback", $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -49,7 +50,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("OkulBilisimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find("BulutYazilimFeedbackBundle:Feedback", $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -75,7 +76,7 @@ class FeedbackAdminController extends \Symfony\Bundle\FrameworkBundle\Controller
         if ($request->isMethod('POST')) {
             $this->sendMessage($request, $id);
         }
-        return $this->render('OkulBilisimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
+        return $this->render('BulutYazilimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
     }
 
     public function sendMessage(Request $request, Feedback $feedback)

@@ -1,13 +1,13 @@
 <?php
 
-namespace OkulBilisim\FeedbackBundle\Controller;
+namespace BulutYazilim\FeedbackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
 
 /**
  * Class WidgetController
- * @package Okulbilisim\FeedbackBundle\Controller
+ * @package BulutYazilim\FeedbackBundle\Controller
  */
 class WidgetController extends Controller
 {
@@ -20,6 +20,6 @@ class WidgetController extends Controller
             throw new InvalidConfigurationException("The parameter 'feedback_categories' must be defined.");
         $data = [];
         $data['categories'] = $categories;
-        return $this->render('OkulBilisimFeedbackBundle:Feedback:index.html.twig',$data);
+        return $this->render('BulutYazilimFeedbackBundle:Feedback:index.html.twig',$data);
     }
 }

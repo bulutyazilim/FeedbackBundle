@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "project",
     "description": "Symfony bundle for user feedback",
-    "version": "1.1.2",
+    "version": "2.0",
     "keywords": [
         "feedback",
         "symfony"
@@ -13,10 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OkulBilisim\\FeedbackBundle\\": ""
+            "BulutYazilim\\FeedbackBundle\\": ""
         }
     },
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.5.9",
+        "symfony/symfony": "~2.8|~3.0",
+        "doctrine/orm": "~2.5"
     }
 }

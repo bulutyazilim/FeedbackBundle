@@ -12,7 +12,7 @@ FeedbackBundle for Symfony 2
 
 add
 ```
-composer require --dev "okulbilisim/feedback-bundle":"dev-master"
+composer require --dev "bulutyazilim/feedback-bundle":"dev-master"
 
 ```
 
@@ -36,7 +36,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new OkulBilisim\FeedbackBundle\OkulBilisimFeedbackBundle(),
+            new BulutYazilim\FeedbackBundle\BulutYazilimFeedbackBundle(),
         );
 
         // ...
@@ -52,7 +52,7 @@ import routing
 
 ```yml
 feedback:
-    resource: "@OkulBilisimFeedbackBundle/Resources/config/routing.yml"
+    resource: "@BulutYazilimFeedbackBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
@@ -72,9 +72,9 @@ twig:
 add style and css files to your layout.
 
 ```yml
-- @OkulBilisimFeedbackBundle/Resources/public/js/feedback.js
-- @OkulBilisimFeedbackBundle/Resources/public/js/admin.js
-- @OkulBilisimFeedbackBundle/Resources/public/css/feedback.css
+- @BulutYazilimFeedbackBundle/Resources/public/js/feedback.js
+- @BulutYazilimFeedbackBundle/Resources/public/js/admin.js
+- @BulutYazilimFeedbackBundle/Resources/public/css/feedback.css
 ```
 
 ## Step 6
