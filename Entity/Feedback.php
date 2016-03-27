@@ -303,4 +303,12 @@ class Feedback
     {
         $this->screenshot = $screenshot;
     }
+    
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getBody();
+    }
 }
