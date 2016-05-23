@@ -2,8 +2,13 @@
 
 namespace BulutYazilim\FeedbackBundle\Twig;
 
+use BulutYazilim\FeedbackBundle\Entity\Feedback;
+use BulutYazilim\FeedbackBundle\Form\Type\FeedbackType;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use \Twig_Environment;
 
 /**
  * Class FeedbackExtension
@@ -11,15 +16,38 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class FeedbackExtension extends \Twig_Extension
 {
-    /** @var EntityManager */
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
 
-    /** @var  ContainerInterface */
-    private $container;
-    public function __construct(ContainerInterface $container)
+    /**
+     * @var  FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var  Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @var array
+     */
+    private $feedbackCategories = [];
+
+
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        Twig_Environment $twig,
+        EntityManagerInterface $em,
+        $feedbackCategories
+    )
     {
-        $this->container = $container;
-        $this->em = $container->get('doctrine.orm.entity_manager');
+        $this->em                   = $em;
+        $this->twig                 = $twig;
+        $this->feedbackCategories   = $feedbackCategories;
+        $this->formFactory          = $formFactory;
     }
 
     /**
@@ -43,21 +71,6 @@ class FeedbackExtension extends \Twig_Extension
     }
 
     /**
-     * @param $category
-     * @return string
-     */
-    public function categories($category)
-    {
-        $categories = $this->container->getParameter('feedback_categories');
-        foreach ($categories as $cat) {
-            if($cat['id']==$category){
-                return $cat['name'];
-            }
-        }
-        return "null";
-    }
-
-    /**
      * @param $user
      * @return mixed
      */
@@ -71,11 +84,15 @@ class FeedbackExtension extends \Twig_Extension
 
     public function widget()
     {
-        $data = [];
-        $data['categories'] = $this->container->getParameter('feedback_categories');
-        $twig = $this->container->get('twig');
-        $content= $twig->render('BulutYazilimFeedbackBundle:Feedback:index.html.twig',$data);
-        return $content;
+        $feedback = new Feedback();
+        $form = $this->formFactory->create(FeedbackType::class, $feedback, [
+            'categories' => $this->feedbackCategories,
+        ]);
+
+        return $this->twig->render('BulutYazilimFeedbackBundle:Feedback:index.html.twig', [
+            'form' => $form->createView(),
+            'categories' => $this->feedbackCategories
+        ]);
     }
 
     /**
