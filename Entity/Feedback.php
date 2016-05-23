@@ -25,7 +25,6 @@ class Feedback
 
     /**
      * @var integer
-     * @Expose
      */
     private $status;
 
