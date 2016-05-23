@@ -27,7 +27,7 @@
             <tr>
                 <td>{{ entity.id }}</td>
                 <td>{{ entity.email }}</td>
-                <td>{{ entity.category|feedback_category }}</td>
+                <td>{{ categories[entity.category] }}</td>
                 <td>{{ entity.senderIp }}</td>
                 <td>{{ entity.referer }}</td>
                 <td>

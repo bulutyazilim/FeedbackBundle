@@ -8,27 +8,22 @@
             <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
                 <li>
                     <div class="report">
-                        <button id="close-button" class="btn btn-danger btn-sm do-close"><i class="fa fa-close"></i>
+                        <button id="close-button" class="btn btn-danger btn-sm do-close">
+                            <i class="fa fa-close"></i>
                         </button>
-                        <h2 class="text-center">{{ "feedback"|trans }}</h2>
-
-                        <form class="doo" method="post" action="{{path('bulutyazilim_feedback_new')}}">
+                        <h3 class="text-center">{{ "feedback"|trans }}</h3>
+                        <form method="post" action="{{path('bulutyazilim_feedback_new')}}" class="text-center">
                             <div class="col-sm-12">
-                                <select title="category" class="form-control input-sm" name="category" id="category" required="required">
-                                    {% for category in categories %}
-                                        <option value="{{ category.id }}">{{ category.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <input class="form-control" name="email" autofocus
-                                       placeholder="{{ "feedback.email"|trans }}" type="email" required/>
-                                <textarea required name="body" class="form-control"
-                                          placeholder="{{ "feedback.message"|trans }}"></textarea>
-                                <input name="screenshot" type="hidden" class="screen-uri">
-                                <span class="screenshot pull-right"><i class="fa fa-camera cam"
-                                                                       title="{{ "feedback.email"|trans }}"></i></span>
-                            </div>
-                            <div class="col-sm-12 clearfix">
-                                <button class="btn btn-primary btn-block">{{ "feedback.send"|trans }}</button>
+                                {{ form_widget(form.category) }}
+                                {{ form_widget(form.email) }}
+                                {{ form_widget(form.body) }}
+                                {{ form_widget(form.screenshot) }}
+                                {{ form_widget(form._token) }}
+                                <span class="screenshot pull-right">
+                                    <i class="fa fa-camera cam" title="{{ "feedback.email"|trans }}"></i>
+                                </span>
+                                {{ form_widget(form.captcha) }}
+                                {{ form_widget(form.submit) }}
                             </div>
                         </form>
                     </div>
@@ -49,7 +44,7 @@
                     <div class="failed text-center hideme">
                         <h2>{{ "feedback.fail"|trans }}</h2>
 
-                        <p>{{ "feedback.fail_long"|trans }}</a></p>
+                        <p>{{ "feedback.fail_long"|trans|raw }}</a></p>
 
                         <div class="col-sm-12 clearfix">
                             <button class="btn btn-danger btn-block do-close">{{ "feedback.close"|trans }}</button>

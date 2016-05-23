@@ -63,7 +63,7 @@
 
 #feedback_wrapper_div .dropdown-menu {
 	width: 290px;
-	height: 380px;
+	height: auto;
 	bottom: 50px;
 }
 
