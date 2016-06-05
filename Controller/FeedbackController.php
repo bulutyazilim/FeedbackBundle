@@ -12,6 +12,7 @@ class FeedbackController extends Controller
 {
     public function newAction(Request $request)
     {
+        $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback, [
@@ -31,6 +32,19 @@ class FeedbackController extends Controller
             ;
             $em->persist($feedback);
             $em->flush();
+
+            if($this->container->hasParameter('feedback_email')
+                && $this->container->hasParameter('system_email')
+                && $this->container->hasParameter('project_name')){
+                $message = $this->get('mailer')->createMessage();
+                $message = $message
+                    ->setSubject($translator->trans('new.feedback'))
+                    ->addFrom($this->getParameter('system_email'), $this->getParameter('project_name'))
+                    ->setTo($this->getParameter('feedback_email'), $this->getParameter('project_name'))
+                    ->setBody($feedback->getBody(), 'text/html');
+
+                $this->get('mailer')->send($message);
+            }
 
             return JsonResponse::create([
                 'status' => true

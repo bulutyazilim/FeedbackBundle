@@ -24,3 +24,4 @@ feedback.thank_long: 'Bildiriminiz bize ulaştı. En kısa sürede sizinle ileti
 feedback.close: 'close'
 feedback.fail: 'Tüh!'
 feedback.fail_long: 'Bildiriminiz bize iletilmemiş görünüyor.<br><br>Eski yöntemlerle bize ulaşmayı deneyin lütfen veya formu düzenleyerek tekrar deneyin.'
+new.feedback: 'Yeni Bildirim'
