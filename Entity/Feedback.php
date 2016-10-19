@@ -3,6 +3,7 @@
 namespace He8us\FeedbackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Feedback
 {
+    use TimestampableEntity;
+
     const STATUS_NONE = 0;
     const STATUS_READ = 1;
     const STATUS_DONE = 2;
@@ -33,16 +36,6 @@ class Feedback
      * @Assert\NotBlank()
      */
     protected $body;
-
-    /**
-     * @var \DateTime
-     */
-    protected $created;
-
-    /**
-     * @var \DateTime
-     */
-    protected $updated;
 
     /**
      * @var bool
@@ -106,49 +99,6 @@ class Feedback
         $this->status = $status;
 
         return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
-    /**
-     * @param $updated
-     *
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @param $created
-     *
-     * @return $this
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
-
-    public function delete()
-    {
-        $this->deleted = true;
     }
 
     /**

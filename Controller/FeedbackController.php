@@ -51,10 +51,8 @@ class FeedbackController extends Controller
             ->setReferrer($request->headers->get('referer'))
             ->setSenderIp($request->getClientIp())
             ->setLoggedUser($this->getUser() ? $this->getUser()->getId() : null)
-            ->setStatus(Feedback::STATUS_NONE)
-            ->setCreated(new \DateTime())
-            ->setUpdated(new \DateTime())
-            ->setDeleted(false);
+            ->setStatus(Feedback::STATUS_NONE);
+
         $entityManager->persist($feedback);
         $entityManager->flush();
     }

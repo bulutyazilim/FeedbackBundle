@@ -33,10 +33,7 @@ He8us\FeedbackBundle\Entity\Feedback:
         category:
             type: integer
             nullable: false
-        created:
-            type: datetime
-        updated:
-            type: datetime
+
         deleted:
             type: boolean
             options:
