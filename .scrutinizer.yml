@@ -1,0 +1,8 @@
+checks:
+    php: true
+    javascript: true
+
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - '*.min.js'
