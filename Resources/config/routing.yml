@@ -3,24 +3,6 @@ he8us_feedback_new:
     path:     /feedback/new
     defaults: { _controller: "He8usFeedbackBundle:Feedback:new" }
 
-he8us_feedback_homepage:
-    path:     /feedback/{status}
-    defaults: { _controller: "He8usFeedbackBundle:FeedbackAdmin:index",status: 0 }
-
-he8us_feedback_inbox:
-    path:     /feedback/inbox
-    defaults: { _controller: "He8usFeedbackBundle:Feedback:inbox" }
-
-he8us_feedback_delete:
-    path:     /admin/feedback/remove/{id}
-    defaults: {_controller: "He8usFeedbackBundle:FeedbackAdmin:delete" }
-    methods: [DELETE]
-he8us_feedback_mark_read:
-    path:     /admin/feedback/mark/read/{id}
-    defaults: {_controller: "He8usFeedbackBundle:FeedbackAdmin:markAs", type: 'read' }
-he8us_feedback_mark_done:
-    path:     /admin/feedback/mark/done/{id}
-    defaults: {_controller: "He8usFeedbackBundle:FeedbackAdmin:markAs", type: 'done' }
-he8us_feedback_reply:
-    path:     /admin/feedback/reply/{id}
-    defaults: {_controller: "He8usFeedbackBundle:FeedbackAdmin:reply"}
+he8us_feedback_admin:
+    resource: "@He8usFeedbackBundle/Resources/config/routing/admin.yml"
+    prefix: /admin
