@@ -13,7 +13,7 @@
                 {% endfor %}
             {% endfor %}
 
-            <form action="{{ url('bulutyazilim_feedback_reply',{id: message.id}) }}" method="post">
+            <form action="{{ url('he8us_feedback_reply',{id: message.id}) }}" method="post">
                 <div class="form-group">
                     <label for="Subject">{{ "Subject"|trans }}</label>
                     <input class="form-control" type="text" id="Subject" name="message[subject]"

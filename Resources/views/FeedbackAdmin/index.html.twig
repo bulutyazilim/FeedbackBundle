@@ -2,13 +2,13 @@
 {% block body -%}
     <ul class="nav nav-tabs">
         <li role="presentation" {% if status==0 %}class="active"{% endif %}>
-            <a href="{{ url('bulutyazilim_feedback_homepage') }}">{{ "feedback.list.new"|trans }}</a>
+            <a href="{{ url('he8us_feedback_homepage') }}">{{ "feedback.list.new"|trans }}</a>
         </li>
         <li role="presentation" {% if status==1 %}class="active"{% endif %}>
-            <a href="{{ url('bulutyazilim_feedback_homepage',{status: 1}) }}">{{ "feedback.list.read"|trans }}</a>
+            <a href="{{ url('he8us_feedback_homepage',{status: 1}) }}">{{ "feedback.list.read"|trans }}</a>
         </li>
         <li role="presentation" {% if status==2 %}class="active"{% endif %}>
-            <a href="{{ url('bulutyazilim_feedback_homepage',{status: 2}) }}">{{ "feedback.list.done"|trans }}</a>
+            <a href="{{ url('he8us_feedback_homepage',{status: 2}) }}">{{ "feedback.list.done"|trans }}</a>
         </li>
     </ul>
     <table class="table responsive-table table-bordered">

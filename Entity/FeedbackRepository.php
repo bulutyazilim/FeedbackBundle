@@ -1,6 +1,6 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Entity;
+namespace He8us\FeedbackBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

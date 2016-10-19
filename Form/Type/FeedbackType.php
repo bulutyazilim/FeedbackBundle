@@ -1,7 +1,8 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Form\Type;
+namespace He8us\FeedbackBundle\Form\Type;
 
+use He8us\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -69,7 +70,7 @@ class FeedbackType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'BulutYazilim\FeedbackBundle\Entity\Feedback',
+                'data_class' => Feedback::class,
                 'cascade_validation' => true,
                 'categories' => [],
                 'attr' => [
@@ -84,6 +85,6 @@ class FeedbackType extends AbstractType
      */
     public function getName()
     {
-        return 'bulutyazilim_feedbackbundle_feedback';
+        return 'he8us_feedbackbundle_feedback';
     }
 }

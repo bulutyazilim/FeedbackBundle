@@ -1,6 +1,6 @@
 services:
-  bulutyazilim_feedback.extension:
-    class: BulutYazilim\FeedbackBundle\Twig\FeedbackExtension
+  he8us_feedback.extension:
+    class: He8us\FeedbackBundle\Twig\FeedbackExtension
     arguments: ["@form.factory", "@twig", "@doctrine.orm.default_entity_manager", "%feedback_categories%"]
     tags:
       - { name: twig.extension }

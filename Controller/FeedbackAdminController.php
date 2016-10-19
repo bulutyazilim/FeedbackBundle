@@ -1,8 +1,8 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Controller;
+namespace He8us\FeedbackBundle\Controller;
 
-use BulutYazilim\FeedbackBundle\Entity\Feedback;
+use He8us\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -16,13 +16,13 @@ class FeedbackAdminController extends Controller
         if ($status < 0 || $status > 2)
             $status = 0;
         $data = [];
-        $repo = $this->getDoctrine()->getManager()->getRepository('BulutYazilimFeedbackBundle:Feedback');
+        $repo = $this->getDoctrine()->getManager()->getRepository(Feedback::class);
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
         $data['status'] = $status;
         $data['entities'] = $entities;
         $categories = $this->container->getParameter('feedback_categories');
         $data['categories'] = $categories;
-        return $this->render("BulutYazilimFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
+        return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }
 
     public function deleteAction(Request $request, $id)
@@ -32,7 +32,7 @@ class FeedbackAdminController extends Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("BulutYazilimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find(Feedback::class, $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -50,7 +50,7 @@ class FeedbackAdminController extends Controller
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find("BulutYazilimFeedbackBundle:Feedback", $id);
+        $feedback = $em->find(Feedback::class, $id);
         if (!$feedback)
             throw new NotFoundHttpException("Not found!");
 
@@ -76,7 +76,7 @@ class FeedbackAdminController extends Controller
         if ($request->isMethod('POST')) {
             $this->sendMessage($request, $id);
         }
-        return $this->render('BulutYazilimFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
+        return $this->render('He8usFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
     }
 
     public function sendMessage(Request $request, Feedback $feedback)

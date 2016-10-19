@@ -1,5 +1,5 @@
 {
-    "name": "bulutyazilim/feedback-bundle",
+    "name": "he8us/feedback-bundle",
     "license": "MIT",
     "type": "project",
     "description": "Symfony bundle for user feedback",
@@ -9,11 +9,11 @@
         "symfony"
     ],
     "support": {
-        "email": "info@okulbilisim.com"
+        "email": "cedric+github@he8us.be"
     },
     "autoload": {
         "psr-4": {
-            "BulutYazilim\\FeedbackBundle\\": ""
+            "He8us\\FeedbackBundle\\": ""
         }
     },
     "require": {
@@ -21,6 +21,5 @@
         "symfony/symfony": "~2.8|~3.0",
         "doctrine/orm": "~2.5",
         "gregwar/captcha-bundle": "~2.0"
-
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Entity;
+namespace He8us\FeedbackBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;

@@ -1,9 +1,9 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Twig;
+namespace He8us\FeedbackBundle\Twig;
 
-use BulutYazilim\FeedbackBundle\Entity\Feedback;
-use BulutYazilim\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Entity\Feedback;
+use He8us\FeedbackBundle\Form\Type\FeedbackType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,7 +12,7 @@ use \Twig_Environment;
 
 /**
  * Class FeedbackExtension
- * @package BulutYazilim\FeedbackBundle\Twig
+ * @package He8us\FeedbackBundle\Twig
  */
 class FeedbackExtension extends \Twig_Extension
 {
@@ -89,7 +89,7 @@ class FeedbackExtension extends \Twig_Extension
             'categories' => $this->feedbackCategories,
         ]);
 
-        return $this->twig->render('BulutYazilimFeedbackBundle:Feedback:index.html.twig', [
+        return $this->twig->render('He8usFeedbackBundle:Feedback:index.html.twig', [
             'form' => $form->createView(),
             'categories' => $this->feedbackCategories
         ]);

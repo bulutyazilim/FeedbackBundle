@@ -1,9 +1,9 @@
 <?php
 
-namespace BulutYazilim\FeedbackBundle\Controller;
+namespace He8us\FeedbackBundle\Controller;
 
-use BulutYazilim\FeedbackBundle\Entity\Feedback;
-use BulutYazilim\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Entity\Feedback;
+use He8us\FeedbackBundle\Form\Type\FeedbackType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
