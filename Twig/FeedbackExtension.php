@@ -38,6 +38,14 @@ class FeedbackExtension extends \Twig_Extension
     private $feedbackCategories = [];
 
 
+    /**
+     * FeedbackExtension constructor.
+     *
+     * @param FormFactoryInterface   $formFactory
+     * @param Twig_Environment       $twig
+     * @param EntityManagerInterface $entityManager
+     * @param                        $feedbackCategories
+     */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
@@ -84,6 +92,9 @@ class FeedbackExtension extends \Twig_Extension
         //@todo user entity ???
     }
 
+    /**
+     * @return string
+     */
     public function widget()
     {
         $feedback = new Feedback();

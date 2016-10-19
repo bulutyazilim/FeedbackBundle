@@ -15,7 +15,7 @@ class FeedbackController extends Controller
      *
      * @return JsonResponse
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request): JsonResponse
     {
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback, [
@@ -43,14 +43,13 @@ class FeedbackController extends Controller
      * @param Request  $request
      * @param Feedback $feedback
      */
-    private function persistFeedback(Request $request, Feedback $feedback):void
+    private function persistFeedback(Request $request, Feedback $feedback): void
     {
         $entityManager = $this->getDoctrine()->getManager();
 
         $feedback
             ->setReferrer($request->headers->get('referer'))
             ->setSenderIp($request->getClientIp())
-            ->setLoggedUser($this->getUser() ? $this->getUser()->getId() : null)
             ->setStatus(Feedback::STATUS_NONE);
 
         $entityManager->persist($feedback);
@@ -60,7 +59,7 @@ class FeedbackController extends Controller
     /**
      * @param Feedback $feedback
      */
-    private function sendMail(Feedback $feedback):void
+    private function sendMail(Feedback $feedback): void
     {
         if (
             !$this->container->hasParameter('feedback_email')

@@ -90,7 +90,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -98,7 +98,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus():string
     {
         return $this->status;
     }
@@ -106,9 +106,9 @@ class Feedback
     /**
      * @param string $status
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setStatus(string $status)
+    public function setStatus(string $status): Feedback
     {
         $this->status = $status;
 
@@ -118,7 +118,7 @@ class Feedback
     /**
      * @return bool
      */
-    public function isDeleted()
+    public function isDeleted(): bool
     {
         return $this->deleted;
     }
@@ -126,7 +126,7 @@ class Feedback
     /**
      * @param bool $deleted
      *
-     * @return $this
+     * @return Feedback
      */
     public function setDeleted(bool $deleted)
     {
@@ -134,15 +134,10 @@ class Feedback
         return $this;
     }
 
-    public function delete()
-    {
-        $this->deleted = true;
-    }
-
     /**
      * @return string
      */
-    public function getSenderIp()
+    public function getSenderIp(): string
     {
         return $this->senderIp;
     }
@@ -150,9 +145,9 @@ class Feedback
     /**
      * @param string $senderIp
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setSenderIp(string $senderIp)
+    public function setSenderIp(string $senderIp): Feedback
     {
         $this->senderIp = $senderIp;
 
@@ -162,7 +157,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getReferrer()
+    public function getReferrer(): string
     {
         return $this->referrer;
     }
@@ -170,9 +165,9 @@ class Feedback
     /**
      * @param string $referrer
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setReferrer(string $referrer)
+    public function setReferrer(string $referrer): Feedback
     {
         $this->referrer = $referrer;
 
@@ -180,42 +175,38 @@ class Feedback
     }
 
     /**
-     * Get email
-     *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * Set email
-     *
      * @param string $email
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): Feedback
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return Category
+     * @return int
      */
-    public function getCategory()
+    public function getCategory(): int
     {
         return $this->category;
     }
 
     /**
-     * @param Category $category
+     * @param $category
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setCategory(Category $category)
+    public function setCategory($category): Feedback
     {
         $this->category = $category;
 
@@ -225,23 +216,26 @@ class Feedback
     /**
      * @return string
      */
-    public function getScreenshot()
+    public function getScreenshot(): string
     {
         return $this->screenshot;
     }
 
     /**
      * @param string $screenshot
+     *
+     * @return Feedback
      */
-    public function setScreenshot(string $screenshot)
+    public function setScreenshot(string $screenshot): Feedback
     {
         $this->screenshot = $screenshot;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getBody();
     }
@@ -249,17 +243,17 @@ class Feedback
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
 
     /**
-     * @param $body
+     * @param string $body
      *
-     * @return $this
+     * @return Feedback
      */
-    public function setBody($body)
+    public function setBody(string $body): Feedback
     {
         $this->body = $body;
 

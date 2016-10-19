@@ -18,7 +18,7 @@ class FeedbackAdminController extends Controller
      *
      * @return Response
      */
-    public function indexAction($status = 0)
+    public function indexAction(int $status = 0): Response
     {
         if ($status < 0 || $status > 2) {
             $status = 0;
@@ -39,7 +39,7 @@ class FeedbackAdminController extends Controller
      *
      * @return JsonResponse
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id): JsonResponse
     {
         $feedback = $this->getFeedback($request, $id);
 
@@ -58,7 +58,7 @@ class FeedbackAdminController extends Controller
      *
      * @return Feedback
      */
-    private function getFeedback(Request $request, $id):Feedback
+    private function getFeedback(Request $request, $id): Feedback
     {
         if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException("Not found!");
@@ -77,7 +77,7 @@ class FeedbackAdminController extends Controller
     /**
      * @return EntityManager
      */
-    private function getEntityManager():EntityManager
+    private function getEntityManager(): EntityManager
     {
         return $this->getDoctrine()->getManager();
     }
@@ -89,7 +89,7 @@ class FeedbackAdminController extends Controller
      *
      * @return JsonResponse
      */
-    public function markAsAction(Request $request, $id, $type = "read")
+    public function markAsAction(Request $request, $id, string $type = "read"): JsonResponse
     {
         $feedback = $this->getFeedback($request, $id);
 
@@ -108,7 +108,7 @@ class FeedbackAdminController extends Controller
      *
      * @return int
      */
-    private function getStatus($type)
+    private function getStatus(string $type)
     {
         if ($type == 'read') {
             return Feedback::STATUS_READ;
@@ -127,7 +127,7 @@ class FeedbackAdminController extends Controller
      *
      * @return Response
      */
-    public function replyAction(Request $request, Feedback $id)
+    public function replyAction(Request $request, Feedback $id): Response
     {
         $data = [];
         $data['message'] = $id;
@@ -143,7 +143,7 @@ class FeedbackAdminController extends Controller
      * @param Request  $request
      * @param Feedback $feedback
      */
-    public function sendMessage(Request $request, Feedback $feedback)
+    public function sendMessage(Request $request, Feedback $feedback): void
     {
         $form = $request->get('message');
         $mailer = $this->container->get('mailer');
