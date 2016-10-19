@@ -1,6 +1,7 @@
 (function ($) {
+    'use strict';
     $.fn.feedback = function (success, fail) {
-        self = $(this);
+        var self = $(this);
         self.find('.dropdown-menu-form').on('click', function (e) {
             e.stopPropagation()
         })
@@ -24,10 +25,12 @@
             self.find('textarea').val('');
         });
 
-        failed = function () {
+        var failed = function () {
             self.find('.loading').hide();
             self.find('.failed').show();
-            if (fail) fail();
+            if (fail) {
+                fail();
+            }
         }
 
         self.find('form').on('submit', function () {
@@ -37,8 +40,12 @@
                 if (res.status) {
                     self.find('.loading').hide();
                     self.find('.reported').show();
-                    if (success) success();
-                } else failed();
+                    if (success) {
+                        success();
+                    }
+                } else {
+                    failed();
+                }
             }).fail(function () {
                 failed();
             });

@@ -22,28 +22,57 @@ class Feedback
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
-    /**
-     * @var integer
-     */
-    private $status;
-
     /**
      * @var string
      *
      */
     protected $screenshot;
-
-
     /**
      * @var string
      *
      * @Assert\NotBlank()
      */
     protected $body;
+
+    /**
+     * @var \DateTime
+     */
     protected $created;
+
+    /**
+     * @var \DateTime
+     */
     protected $updated;
+
+    /**
+     * @var bool
+     */
     protected $deleted;
+
+    /**
+     * @var integer
+     */
+    private $status;
+    /**
+     * @var string
+     */
+    private $senderIp;
+    /**
+     * @var string
+     */
+    private $referrer;
+    /**
+     * @var integer
+     */
+    private $loggedUser;
+    /**
+     * @var string
+     */
+    private $email;
+    /**
+     * @var integer
+     */
+    private $category;
 
     /**
      * Get the id
@@ -54,7 +83,6 @@ class Feedback
     {
         return $this->id;
     }
-
 
     /**
      * Get the status
@@ -70,6 +98,7 @@ class Feedback
      * Set status
      *
      * @param  integer
+     *
      * @return Feedback
      */
     public function setStatus($status)
@@ -79,33 +108,38 @@ class Feedback
         return $this;
     }
 
-    public function getDeleted()
-    {
-        return $this->deleted;
-    }
-
-    public function setDeleted($deleted)
-    {
-        $this->deleted = $deleted;
-        return $this;
-    }
-
+    /**
+     * @return \DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
     }
 
+    /**
+     * @param $updated
+     *
+     * @return $this
+     */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
         return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getCreated()
     {
         return $this->created;
     }
 
+    /**
+     * @param $created
+     *
+     * @return $this
+     */
     public function setCreated($created)
     {
         $this->created = $created;
@@ -117,42 +151,22 @@ class Feedback
         $this->deleted = true;
     }
 
+    /**
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
     }
 
     /**
-     * @var string
-     */
-    private $senderIp;
-
-    /**
-     * @var string
-     */
-    private $referer;
-
-    /**
-     * @var integer
-     */
-    private $loggedUser;
-
-    /**
-     * @var string
-     */
-    private $email;
-
-
-    /**
-     * Set senderIp
+     * @param $deleted
      *
-     * @param string $senderIp
-     * @return Feedback
+     * @return $this
      */
-    public function setSenderIp($senderIp)
+    public function setDeleted($deleted)
     {
-        $this->senderIp = $senderIp;
-
+        $this->deleted = $deleted;
         return $this;
     }
 
@@ -167,37 +181,39 @@ class Feedback
     }
 
     /**
-     * Set referer
+     * Set senderIp
      *
-     * @param string $referer
+     * @param string $senderIp
+     *
      * @return Feedback
      */
-    public function setReferer($referer)
+    public function setSenderIp($senderIp)
     {
-        $this->referer = $referer;
+        $this->senderIp = $senderIp;
 
         return $this;
     }
 
     /**
-     * Get referer
+     * Get referrer
      *
      * @return string
      */
-    public function getReferer()
+    public function getReferrer()
     {
-        return $this->referer;
+        return $this->referrer;
     }
 
     /**
-     * Set loggedUser
+     * Set referrer
      *
-     * @param integer $loggedUser
+     * @param string $referrer
+     *
      * @return Feedback
      */
-    public function setLoggedUser($loggedUser)
+    public function setReferrer($referrer)
     {
-        $this->loggedUser = $loggedUser;
+        $this->referrer = $referrer;
 
         return $this;
     }
@@ -213,14 +229,15 @@ class Feedback
     }
 
     /**
-     * Set email
+     * Set loggedUser
      *
-     * @param string $email
+     * @param integer $loggedUser
+     *
      * @return Feedback
      */
-    public function setEmail($email)
+    public function setLoggedUser($loggedUser)
     {
-        $this->email = $email;
+        $this->loggedUser = $loggedUser;
 
         return $this;
     }
@@ -236,43 +253,15 @@ class Feedback
     }
 
     /**
-     * Set body
+     * Set email
      *
-     * @param string $body
+     * @param string $email
+     *
      * @return Feedback
      */
-    public function setBody($body)
+    public function setEmail($email)
     {
-        $this->body = $body;
-
-        return $this;
-    }
-
-    /**
-     * Get body
-     *
-     * @return string
-     */
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-    /**
-     * @var integer
-     */
-    private $category;
-
-
-    /**
-     * Set category
-     *
-     * @param integer $category
-     * @return Feedback
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
+        $this->email = $email;
 
         return $this;
     }
@@ -285,6 +274,20 @@ class Feedback
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param integer $category
+     *
+     * @return Feedback
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**
@@ -302,12 +305,36 @@ class Feedback
     {
         $this->screenshot = $screenshot;
     }
-    
+
     /**
      * @return string
      */
     public function __toString()
     {
         return $this->getBody();
+    }
+
+    /**
+     * Get body
+     *
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     *
+     * @return Feedback
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
     }
 }

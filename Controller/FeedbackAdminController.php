@@ -2,19 +2,27 @@
 
 namespace He8us\FeedbackBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use He8us\FeedbackBundle\Entity\Feedback;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class FeedbackAdminController extends Controller
 {
+    /**
+     * @param int $status
+     *
+     * @return Response
+     */
     public function indexAction($status = 0)
     {
-        if ($status < 0 || $status > 2)
+        if ($status < 0 || $status > 2) {
             $status = 0;
+        }
         $data = [];
         $repo = $this->getDoctrine()->getManager()->getRepository(Feedback::class);
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
@@ -25,48 +33,100 @@ class FeedbackAdminController extends Controller
         return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }
 
+    /**
+     * @param Request $request
+     * @param         $id
+     *
+     * @return JsonResponse
+     */
     public function deleteAction(Request $request, $id)
     {
-        if (!$request->isXmlHttpRequest())
-            throw new NotFoundHttpException("Not found!");
-
-        /** @var \Doctrine\ORM\EntityManager $em */
-        $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find(Feedback::class, $id);
-        if (!$feedback)
-            throw new NotFoundHttpException("Not found!");
+        $feedback = $this->getFeedback($request, $id);
 
         $feedback->setDeleted(true);
-        $em->persist($feedback);
-        $em->flush();
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($feedback);
+        $entityManager->flush();
 
         return JsonResponse::create(['status' => true]);
     }
 
-    public function markAsAction(Request $request, $id, $type = "read")
+    /**
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Feedback
+     */
+    private function getFeedback(Request $request, $id):Feedback
     {
-        if (!$request->isXmlHttpRequest())
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException("Not found!");
-
-        /** @var \Doctrine\ORM\EntityManager $em */
-        $em = $this->getDoctrine()->getManager();
-        $feedback = $em->find(Feedback::class, $id);
-        if (!$feedback)
-            throw new NotFoundHttpException("Not found!");
-
-        if ($type == 'read') {
-            $feedback->setStatus(Feedback::STATUS_READ);
-        } elseif ($type == 'done') {
-            $feedback->setStatus(Feedback::STATUS_DONE);
         }
 
-        $em->persist($feedback);
+        $entityManager = $this->getEntityManager();
+        $feedback = $entityManager->find(Feedback::class, $id);
 
-        $em->flush();
+        if (!$feedback) {
+            throw new NotFoundHttpException("Not found!");
+        }
+
+        return $feedback;
+    }
+
+    /**
+     * @return EntityManager
+     */
+    private function getEntityManager():EntityManager
+    {
+        return $this->getDoctrine()->getManager();
+    }
+
+    /**
+     * @param Request $request
+     * @param         $id
+     * @param string  $type
+     *
+     * @return JsonResponse
+     */
+    public function markAsAction(Request $request, $id, $type = "read")
+    {
+        $feedback = $this->getFeedback($request, $id);
+
+        $entityManager = $this->getEntityManager();
+        $feedback->setStatus($this->getStatus($type));
+
+        $entityManager->persist($feedback);
+
+        $entityManager->flush();
 
         return JsonResponse::create(['status' => true]);
     }
 
+    /**
+     * @param $type
+     *
+     * @return int
+     */
+    private function getStatus($type)
+    {
+        if ($type == 'read') {
+            return Feedback::STATUS_READ;
+        }
+
+        if ($type == 'done') {
+            return Feedback::STATUS_DONE;
+        }
+
+        return Feedback::STATUS_NONE;
+    }
+
+    /**
+     * @param Request  $request
+     * @param Feedback $id
+     *
+     * @return Response
+     */
     public function replyAction(Request $request, Feedback $id)
     {
         $data = [];
@@ -79,6 +139,10 @@ class FeedbackAdminController extends Controller
         return $this->render('He8usFeedbackBundle:FeedbackAdmin:reply.html.twig', $data);
     }
 
+    /**
+     * @param Request  $request
+     * @param Feedback $feedback
+     */
     public function sendMessage(Request $request, Feedback $feedback)
     {
         $form = $request->get('message');
@@ -88,13 +152,14 @@ class FeedbackAdminController extends Controller
             ->setFrom($this->container->getParameter('system_email'))
             ->setTo($feedback->getEmail())
             ->setBody(
-                $this->container->get('twig')->render($this->container->getParameter('feedback_reply_mail_layout'), ['form' => $form, 'feedback' => $feedback])
+                $this->container->get('twig')->render($this->container->getParameter('feedback_reply_mail_layout'),
+                    ['form' => $form, 'feedback' => $feedback])
             )
             ->setContentType('text/html');
         $mailer->send($message);
 
         /** @var Session $session */
         $session = $this->container->get('session');
-        $session->getFlashBag()->add('success',$this->get('translator')->trans("Message send successfully."));
+        $session->getFlashBag()->add('success', $this->get('translator')->trans("Message send successfully."));
     }
 }

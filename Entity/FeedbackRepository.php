@@ -7,21 +7,9 @@ use Doctrine\ORM\EntityRepository;
 class FeedbackRepository extends EntityRepository
 {
 
-    public function findBy(array $criteria=[], array $orderBy = null, $limit = null, $offset = null)
+    public function findBy(array $criteria = [], array $orderBy = null, $limit = null, $offset = null)
     {
         return parent::findBy($this->fixCriteria($criteria), $orderBy, $limit, $offset);
-    }
-
-    public function findOneBy(array $criteria, array $orderBy = null)
-    {
-        return parent::findOneBy($this->fixCriteria($criteria), $orderBy);
-    }
-
-    public function find($id, $lockMode = \Doctrine\DBAL\LockMode::NONE, $lockVersion = null)
-    {
-        return $this->findOneBy(array(
-            'id' => $id
-        ));
     }
 
     private function fixCriteria(array $criteria)
@@ -31,6 +19,18 @@ class FeedbackRepository extends EntityRepository
         }
 
         return $criteria;
+    }
+
+    public function find($id, $lockMode = \Doctrine\DBAL\LockMode::NONE, $lockVersion = null)
+    {
+        return $this->findOneBy([
+            'id' => $id,
+        ]);
+    }
+
+    public function findOneBy(array $criteria, array $orderBy = null)
+    {
+        return parent::findOneBy($this->fixCriteria($criteria), $orderBy);
     }
 
 }

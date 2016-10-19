@@ -15,7 +15,7 @@ He8us\FeedbackBundle\Entity\Feedback:
         senderIp:
             type: string
             length: 255
-        referer:
+        referrer:
             type: string
             length: 255
         loggedUser:

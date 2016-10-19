@@ -2,16 +2,17 @@
 
 namespace He8us\FeedbackBundle\Twig;
 
+use Doctrine\ORM\EntityManagerInterface;
 use He8us\FeedbackBundle\Entity\Feedback;
 use He8us\FeedbackBundle\Form\Type\FeedbackType;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use \Twig_Environment;
+use Twig_Environment;
+use Twig_SimpleFilter;
+use Twig_SimpleFunction;
 
 /**
  * Class FeedbackExtension
+ *
  * @package He8us\FeedbackBundle\Twig
  */
 class FeedbackExtension extends \Twig_Extension
@@ -19,7 +20,7 @@ class FeedbackExtension extends \Twig_Extension
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private $entityManager;
 
     /**
      * @var  FormFactoryInterface
@@ -40,43 +41,44 @@ class FeedbackExtension extends \Twig_Extension
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
-        EntityManagerInterface $em,
+        EntityManagerInterface $entityManager,
         $feedbackCategories
-    )
-    {
-        $this->em                   = $em;
-        $this->twig                 = $twig;
-        $this->feedbackCategories   = $feedbackCategories;
-        $this->formFactory          = $formFactory;
+    ) {
+        $this->entityManager = $entityManager;
+        $this->twig = $twig;
+        $this->feedbackCategories = $feedbackCategories;
+        $this->formFactory = $formFactory;
     }
 
     /**
-     * @return array
+     * @return Twig_SimpleFunction[]
      */
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('feedback_widget',[$this,'widget'])
+            new Twig_SimpleFunction('feedback_widget', [$this, 'widget']),
         ];
     }
+
     /**
-     * @return array
+     * @return Twig_SimpleFilter[]
      */
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('loggedUser', [$this, 'loggedUser']),
-            new \Twig_SimpleFilter("feedback_category",[$this,'categories'])
+            new Twig_SimpleFilter('loggedUser', [$this, 'loggedUser']),
+            new Twig_SimpleFilter("feedback_category", [$this, 'categories']),
         ];
     }
 
     /**
      * @param $user
+     *
      * @return mixed
      */
     public function loggedUser($user)
     {
-        if(!is_int($user) || empty($user)){
+        if (!is_int($user) || empty($user)) {
             return $user;
         }
         //@todo user entity ???
@@ -90,8 +92,8 @@ class FeedbackExtension extends \Twig_Extension
         ]);
 
         return $this->twig->render('He8usFeedbackBundle:Feedback:index.html.twig', [
-            'form' => $form->createView(),
-            'categories' => $this->feedbackCategories
+            'form'       => $form->createView(),
+            'categories' => $this->feedbackCategories,
         ]);
     }
 

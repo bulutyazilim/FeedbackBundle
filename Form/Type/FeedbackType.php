@@ -2,6 +2,7 @@
 
 namespace He8us\FeedbackBundle\Form\Type;
 
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use He8us\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -10,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 class FeedbackType extends AbstractType
 {
@@ -24,43 +24,42 @@ class FeedbackType extends AbstractType
         $builder
             ->add('category', ChoiceType::class, [
                 'choices' => $options['categories'],
-                'label' => false,
-                'attr' => [
+                'label'   => false,
+                'attr'    => [
                     'class' => 'form-control input-sm',
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'feedback.email',
-                    'class' => 'form-control',
+                    'class'       => 'form-control',
                 ],
             ])
             ->add('body', TextareaType::class, [
                 'label' => false,
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'feedback.message',
-                    'class' => 'form-control',
+                    'class'       => 'form-control',
                 ],
             ])
             ->add('screenshot', null, [
                 'attr' => [
-                    'class' => 'screen-uri hidden'
-                ]
+                    'class' => 'screen-uri hidden',
+                ],
             ])
             ->add('captcha', CaptchaType::class, [
                 'reload' => true,
                 'as_url' => true,
-                'attr' => [
-                    'placeholder' => 'Captcha'
-                ]
+                'attr'   => [
+                    'placeholder' => 'Captcha',
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary btn-block',
-                ]
-            ])
-            ;
+                ],
+            ]);
     }
 
     /**
@@ -69,14 +68,14 @@ class FeedbackType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
-                'data_class' => Feedback::class,
+            [
+                'data_class'         => Feedback::class,
                 'cascade_validation' => true,
-                'categories' => [],
-                'attr' => [
+                'categories'         => [],
+                'attr'               => [
                     'class' => 'form-validate',
                 ],
-            )
+            ]
         );
     }
 
