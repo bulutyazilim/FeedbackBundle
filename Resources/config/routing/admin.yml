@@ -1,7 +1,7 @@
 
 he8us_feedback_homepage:
     path:     /feedback/{status}
-    defaults: { _controller: "He8usFeedbackBundle:FeedbackAdmin:index",status: 0 }
+    defaults: { _controller: "He8usFeedbackBundle:FeedbackAdmin:index", status: 'none' }
 
 he8us_feedback_inbox:
     path:     /feedback/inbox

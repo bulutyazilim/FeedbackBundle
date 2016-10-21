@@ -15,9 +15,9 @@ class Feedback
 
     use TimestampableEntity;
 
-    const STATUS_NONE = 0;
-    const STATUS_READ = 1;
-    const STATUS_DONE = 2;
+    const STATUS_NONE = 'none';
+    const STATUS_READ = 'read';
+    const STATUS_DONE = 'done';
     /**
      * @var string
      *

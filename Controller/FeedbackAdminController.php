@@ -14,15 +14,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class FeedbackAdminController extends Controller
 {
     /**
-     * @param int $status
+     * @param string $status
      *
      * @return Response
      */
-    public function indexAction(int $status = 0): Response
+    public function indexAction(string $status = Feedback::STATUS_NONE): Response
     {
-        if ($status < 0 || $status > 2) {
-            $status = 0;
+        if($status !== Feedback::STATUS_DONE || $status !== Feedback::STATUS_READ){
+            $status = Feedback::STATUS_NONE;
         }
+
         $data = [];
         $repo = $this->getDoctrine()->getManager()->getRepository(Feedback::class);
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
@@ -97,7 +98,6 @@ class FeedbackAdminController extends Controller
         $feedback->setStatus($this->getStatus($type));
 
         $entityManager->persist($feedback);
-
         $entityManager->flush();
 
         return JsonResponse::create(['status' => true]);
