@@ -3,8 +3,9 @@ FeedbackBundle
 
 FeedbackBundle for Symfony 2
 
-![image](https://cloud.githubusercontent.com/assets/182906/11544971/61d93210-994d-11e5-826a-aa1f1301f8a9.png)
+**This module is not yet functionnal**
 
+Based on [bulutyazilim/FeedbackBundle](https://github.com/bulutyazilim/FeedbackBundle) but heavily modified to follow Symfony3 code style and best-practices
 
 ##Installation
 
