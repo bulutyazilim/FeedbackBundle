@@ -20,7 +20,7 @@ class FeedbackAdminController extends Controller
      */
     public function indexAction(string $status = Feedback::STATUS_NONE): Response
     {
-        if($status !== Feedback::STATUS_DONE || $status !== Feedback::STATUS_READ){
+        if ($status !== Feedback::STATUS_DONE || $status !== Feedback::STATUS_READ) {
             $status = Feedback::STATUS_NONE;
         }
 
@@ -29,7 +29,7 @@ class FeedbackAdminController extends Controller
         $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
         $data['status'] = $status;
         $data['entities'] = $entities;
-        $categories = $this->container->getParameter('feedback_categories');
+        $categories = $this->get("he8");
         $data['categories'] = $categories;
         return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
     }

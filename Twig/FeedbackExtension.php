@@ -2,9 +2,9 @@
 
 namespace He8us\FeedbackBundle\Twig;
 
-use Doctrine\ORM\EntityManagerInterface;
 use He8us\FeedbackBundle\Entity\Feedback;
 use He8us\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Service\CategoryService;
 use Symfony\Component\Form\FormFactoryInterface;
 use Twig_Environment;
 use Twig_SimpleFilter;
@@ -18,11 +18,6 @@ use Twig_SimpleFunction;
 class FeedbackExtension extends \Twig_Extension
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
      * @var  FormFactoryInterface
      */
     private $formFactory;
@@ -33,28 +28,25 @@ class FeedbackExtension extends \Twig_Extension
     private $twig;
 
     /**
-     * @var array
+     * @var CategoryService
      */
-    private $feedbackCategories = [];
+    private $categoryService;
 
 
     /**
      * FeedbackExtension constructor.
      *
-     * @param FormFactoryInterface   $formFactory
-     * @param Twig_Environment       $twig
-     * @param EntityManagerInterface $entityManager
-     * @param                        $feedbackCategories
+     * @param FormFactoryInterface $formFactory
+     * @param Twig_Environment     $twig
+     * @param CategoryService      $categoryService
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig_Environment $twig,
-        EntityManagerInterface $entityManager,
-        $feedbackCategories
+        CategoryService $categoryService
     ) {
-        $this->entityManager = $entityManager;
         $this->twig = $twig;
-        $this->feedbackCategories = $feedbackCategories;
+        $this->categoryService = $categoryService;
         $this->formFactory = $formFactory;
     }
 
@@ -97,14 +89,15 @@ class FeedbackExtension extends \Twig_Extension
      */
     public function widget()
     {
+        $categories = $this->categoryService->getCategories();
         $feedback = new Feedback();
         $form = $this->formFactory->create(FeedbackType::class, $feedback, [
-            'categories' => $this->feedbackCategories,
+            'categories' => $categories,
         ]);
 
         return $this->twig->render('He8usFeedbackBundle:Feedback:index.html.twig', [
             'form'       => $form->createView(),
-            'categories' => $this->feedbackCategories,
+            'categories' => $categories,
         ]);
     }
 

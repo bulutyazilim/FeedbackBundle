@@ -19,7 +19,7 @@ class FeedbackController extends Controller
     {
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback, [
-            'categories' => $this->getParameter('feedback_categories'),
+            'categories' => $this->get('he8us_feedback.category_service')->getCategories(),
         ]);
 
         $form->handleRequest($request);

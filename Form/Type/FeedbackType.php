@@ -23,9 +23,13 @@ class FeedbackType extends AbstractType
     {
         $builder
             ->add('category', ChoiceType::class, [
-                'choices' => $options['categories'],
-                'label'   => false,
-                'attr'    => [
+                'choices'      => $options['categories'],
+                'choice_label' => function ($category) {
+                    /** @var Category $category */
+                    return $category->getLabel();
+                },
+                'label'        => false,
+                'attr'         => [
                     'class' => 'form-control input-sm',
                 ],
             ])
