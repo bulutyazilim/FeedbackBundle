@@ -2,6 +2,7 @@
 
 namespace He8us\FeedbackBundle\Controller;
 
+use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\Feedback;
 use He8us\FeedbackBundle\Form\Type\FeedbackType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +20,7 @@ class FeedbackController extends Controller
     {
         $feedback = new Feedback();
         $form = $this->createForm(FeedbackType::class, $feedback, [
-            'categories' => $this->get('he8us_feedback.category_service')->getCategories(),
+            'categories' => $this->getCategories(),
         ]);
 
         $form->handleRequest($request);
@@ -79,5 +80,13 @@ class FeedbackController extends Controller
 
         $this->get('mailer')->send($message);
 
+    }
+
+    /**
+     * @return Category[]
+     */
+    private function getCategories()
+    {
+        return $this->get('he8us_feedback.category_service')->getCategories();
     }
 }

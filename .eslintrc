@@ -1,0 +1,12 @@
+{
+    "env": {
+        "browser": true,
+        "jquery": true
+    },
+    "globals": {
+        "html2canvas": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ]
+}

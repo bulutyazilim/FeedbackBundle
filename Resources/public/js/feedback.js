@@ -1,10 +1,12 @@
 (function ($) {
     'use strict';
+
     $.fn.feedback = function (success, fail) {
         var self = $(this);
+
         self.find('.dropdown-menu-form').on('click', function (e) {
             e.stopPropagation()
-        })
+        });
 
         self.find('.screenshot').on('click', function () {
             self.find('.cam').removeClass('fa-camera fa-check').addClass('fa-refresh fa-spin');
@@ -31,29 +33,41 @@
             if (fail) {
                 fail();
             }
-        }
+        };
 
-        self.find('form').on('submit', function () {
+        self.find('form').on('submit', function (e) {
+            e.preventDefault();
+
             self.find('.report').hide();
             self.find('.loading').show();
-            $.post($(this).attr('action'), $(this).serialize(), null, 'json').done(function (res) {
-                if (res.status) {
+
+            var $this = $(this);
+
+
+            $.ajax({
+                url: $this.attr('action'),
+                type: "POST",
+                dataType: 'json',
+                data: $this.serialize()
+            })
+                .done(function (res) {
+                    if (res.error) {
+                        return failed();
+                    }
+
                     self.find('.loading').hide();
                     self.find('.reported').show();
-                    if (success) {
-                        success();
-                    }
-                } else {
+                    return;
+                })
+                .fail(function () {
                     failed();
-                }
-            }).fail(function () {
-                failed();
-            });
-            return false;
+                })
         });
     };
+
+    $(function () {
+        $('#feedback_wrapper_div').feedback();
+    });
 }(jQuery));
 
-$(document).ready(function () {
-    $('#feedback_wrapper_div').feedback();
-});
+

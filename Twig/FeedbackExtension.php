@@ -7,7 +7,6 @@ use He8us\FeedbackBundle\Form\Type\FeedbackType;
 use He8us\FeedbackBundle\Service\CategoryService;
 use Symfony\Component\Form\FormFactoryInterface;
 use Twig_Environment;
-use Twig_SimpleFilter;
 use Twig_SimpleFunction;
 
 /**
@@ -58,30 +57,6 @@ class FeedbackExtension extends \Twig_Extension
         return [
             new Twig_SimpleFunction('feedback_widget', [$this, 'widget']),
         ];
-    }
-
-    /**
-     * @return Twig_SimpleFilter[]
-     */
-    public function getFilters()
-    {
-        return [
-            new Twig_SimpleFilter('loggedUser', [$this, 'loggedUser']),
-            new Twig_SimpleFilter("feedback_category", [$this, 'categories']),
-        ];
-    }
-
-    /**
-     * @param $user
-     *
-     * @return mixed
-     */
-    public function loggedUser($user)
-    {
-        if (!is_int($user) || empty($user)) {
-            return $user;
-        }
-        //@todo user entity ???
     }
 
     /**

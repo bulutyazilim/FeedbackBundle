@@ -111,7 +111,6 @@ class Feedback
     public function setStatus(string $status): Feedback
     {
         $this->status = $status;
-
         return $this;
     }
 
@@ -128,7 +127,7 @@ class Feedback
      *
      * @return Feedback
      */
-    public function setDeleted(bool $deleted)
+    public function setDeleted(bool $deleted): Feedback
     {
         $this->deleted = $deleted;
         return $this;
@@ -150,7 +149,6 @@ class Feedback
     public function setSenderIp(string $senderIp): Feedback
     {
         $this->senderIp = $senderIp;
-
         return $this;
     }
 
@@ -170,7 +168,6 @@ class Feedback
     public function setReferrer(string $referrer): Feedback
     {
         $this->referrer = $referrer;
-
         return $this;
     }
 
@@ -209,7 +206,6 @@ class Feedback
     public function setCategory($category): Feedback
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -256,7 +252,6 @@ class Feedback
     public function setBody(string $body): Feedback
     {
         $this->body = $body;
-
         return $this;
     }
 }

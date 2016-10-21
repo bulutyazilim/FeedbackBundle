@@ -59,5 +59,4 @@ class FeedbackRepository extends EntityRepository
     {
         return parent::findOneBy($this->fixCriteria($criteria), $orderBy);
     }
-
 }
