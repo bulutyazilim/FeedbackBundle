@@ -1,4 +1,10 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Entity;
 
@@ -90,7 +96,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
     }
@@ -98,7 +104,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getStatus():string
+    public function getStatus()
     {
         return $this->status;
     }
@@ -136,7 +142,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getSenderIp(): string
+    public function getSenderIp()
     {
         return $this->senderIp;
     }
@@ -155,7 +161,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getReferrer(): string
+    public function getReferrer()
     {
         return $this->referrer;
     }
@@ -174,7 +180,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -191,9 +197,9 @@ class Feedback
     }
 
     /**
-     * @return int
+     * @return Category
      */
-    public function getCategory(): int
+    public function getCategory()
     {
         return $this->category;
     }
@@ -212,7 +218,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getScreenshot(): string
+    public function getScreenshot()
     {
         return $this->screenshot;
     }
@@ -239,7 +245,7 @@ class Feedback
     /**
      * @return string
      */
-    public function getBody(): string
+    public function getBody()
     {
         return $this->body;
     }

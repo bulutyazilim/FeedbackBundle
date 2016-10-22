@@ -1,12 +1,19 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Form\Type;
 
-use Gregwar\CaptchaBundle\Type\CaptchaType;
+use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\Feedback;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,16 +54,9 @@ class FeedbackType extends AbstractType
                     'class'       => 'form-control',
                 ],
             ])
-            ->add('screenshot', null, [
+            ->add('screenshot', HiddenType::class, [
                 'attr' => [
-                    'class' => 'screen-uri hidden',
-                ],
-            ])
-            ->add('captcha', CaptchaType::class, [
-                'reload' => true,
-                'as_url' => true,
-                'attr'   => [
-                    'placeholder' => 'Captcha',
+                    'class' => 'screen-uri',
                 ],
             ])
             ->add('submit', SubmitType::class, [

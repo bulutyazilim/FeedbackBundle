@@ -14,11 +14,11 @@ build:
     tests:
         override:
             - eslint-run Resources/public/js
+            - phpunit -c phpunit.xml
 
 build_failure_conditions:
     - 'elements.rating(<= D).exists'
     - 'elements.rating(<= D).new.exists'
-    - 'issues.label("documentation").new.exists'
     - 'issues.label("coding-style").exists'
     - 'issues.label("coding-style").new.exists'
     - 'issues.severity(>= MAJOR).new.exists'

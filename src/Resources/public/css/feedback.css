@@ -68,11 +68,11 @@
 }
 
 #feedback_wrapper_div.left .dropdown-menu {
-    left: 0px
+    left: 0
 }
 
 #feedback_wrapper_div.right .dropdown-menu {
-    right: 0px
+    right: 0
 }
 
 #feedback_wrapper_div .hideme {

@@ -1,8 +1,13 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Controller;
 
-use Doctrine\ORM\EntityManager;
 use He8us\FeedbackBundle\Entity\Feedback;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,6 +16,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class FeedbackAdminController
+ *
+ * @package He8us\FeedbackBundle\Controller
+ * @author Cedric Michaux <cedric@he8us.be>
+ */
 class FeedbackAdminController extends Controller
 {
     /**
@@ -25,13 +36,27 @@ class FeedbackAdminController extends Controller
         }
 
         $data = [];
-        $repo = $this->getDoctrine()->getManager()->getRepository(Feedback::class);
-        $entities = $repo->findBy(['status' => $status, 'deleted' => false]);
+
         $data['status'] = $status;
-        $data['entities'] = $entities;
-        $categories = $this->get("he8");
-        $data['categories'] = $categories;
+        $data['entities'] = $this->getFeedbackService()->findByStatus($status);
+        $data['categories'] = $this->getCategoriesService()->getCategories();
         return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
+    }
+
+    /**
+     * @return object
+     */
+    private function getFeedbackService():object
+    {
+        return $this->get('he8us_feedback.feedback_service');
+    }
+
+    /**
+     * @return object
+     */
+    private function getCategoriesService():object
+    {
+        return $this->get("he8us_feedback.categories_service");
     }
 
     /**
@@ -44,11 +69,7 @@ class FeedbackAdminController extends Controller
     {
         $feedback = $this->getFeedback($request, $id);
 
-        $feedback->setDeleted(true);
-
-        $entityManager = $this->getEntityManager();
-        $entityManager->persist($feedback);
-        $entityManager->flush();
+        $this->getFeedbackService()->delete($feedback);
 
         return JsonResponse::create(['status' => true]);
     }
@@ -61,26 +82,40 @@ class FeedbackAdminController extends Controller
      */
     private function getFeedback(Request $request, $id): Feedback
     {
-        if (!$request->isXmlHttpRequest()) {
-            throw new NotFoundHttpException("Not found!");
-        }
+        $this->validateRequest($request);
 
-        $entityManager = $this->getEntityManager();
-        $feedback = $entityManager->find(Feedback::class, $id);
+        $feedback = $this->getFeedbackService()->findById($id);
 
-        if (!$feedback) {
-            throw new NotFoundHttpException("Not found!");
-        }
+        $this->validateFeedback($feedback);
 
         return $feedback;
     }
 
     /**
-     * @return EntityManager
+     * @param Request $request
+     *
+     * @throws NotFoundHttpException
      */
-    private function getEntityManager(): EntityManager
+    private function validateRequest(Request $request):void
     {
-        return $this->getDoctrine()->getManager();
+        if (!$request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException("Not found!");
+        }
+        return true;
+    }
+
+    /**
+     * @param $feedback
+     *
+     * @throws NotFoundHttpException
+     */
+    private function validateFeedback(Feedback $feedback):void
+    {
+        if (!$feedback) {
+            throw new NotFoundHttpException("Not found!");
+        }
+
+        return true;
     }
 
     /**
@@ -94,11 +129,9 @@ class FeedbackAdminController extends Controller
     {
         $feedback = $this->getFeedback($request, $id);
 
-        $entityManager = $this->getEntityManager();
         $feedback->setStatus($this->getStatus($type));
 
-        $entityManager->persist($feedback);
-        $entityManager->flush();
+        $this->getFeedbackService()->save($feedback);
 
         return JsonResponse::create(['status' => true]);
     }
@@ -161,5 +194,7 @@ class FeedbackAdminController extends Controller
         /** @var Session $session */
         $session = $this->container->get('session');
         $session->getFlashBag()->add('success', $this->get('translator')->trans("Message send successfully."));
+
+        return true;
     }
 }

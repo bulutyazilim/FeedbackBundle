@@ -1,9 +1,15 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Twig;
 
 use He8us\FeedbackBundle\Entity\Feedback;
-use He8us\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Form\Type\FeedbackWithCaptcha;
 use He8us\FeedbackBundle\Service\CategoryService;
 use Symfony\Component\Form\FormFactoryInterface;
 use Twig_Environment;
@@ -66,7 +72,7 @@ class FeedbackExtension extends \Twig_Extension
     {
         $categories = $this->categoryService->getCategories();
         $feedback = new Feedback();
-        $form = $this->formFactory->create(FeedbackType::class, $feedback, [
+        $form = $this->formFactory->create(FeedbackWithCaptcha::class, $feedback, [
             'categories' => $categories,
         ]);
 

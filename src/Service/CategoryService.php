@@ -1,11 +1,14 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Service;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManager;
 use He8us\FeedbackBundle\Entity\Category;
-use He8us\FeedbackBundle\Entity\CategoryRepository;
 
 
 /**
@@ -14,25 +17,10 @@ use He8us\FeedbackBundle\Entity\CategoryRepository;
  * @package He8us\FeedbackBundle\Service
  * @author Cedric Michaux <cedric@he8us.be>
  */
-class CategoryService
+class CategoryService extends AbstractService
 {
 
-    /**
-     * @var ManagerRegistry
-     */
-    private $managerRegistry;
-
-    /**
-     * CategoryService constructor.
-     *
-     * @param ManagerRegistry $managerRegistry
-     *
-     */
-    public function __construct(ManagerRegistry $managerRegistry)
-    {
-        $this->managerRegistry = $managerRegistry;
-    }
-
+    protected $entityClass = Category::class;
 
     /**
      * @param string $name
@@ -54,13 +42,6 @@ class CategoryService
         return $category;
     }
 
-    /**
-     * @return EntityManager|null
-     */
-    private function getManager():EntityManager
-    {
-        return $this->managerRegistry->getManagerForClass(Category::class);
-    }
 
     /**
      * @param Category $category
@@ -70,6 +51,10 @@ class CategoryService
     public function deleteCategory(Category $category):CategoryService
     {
         $category->setDeleted(true);
+        $manager = $this->getManager();
+        $manager->persist($category);
+        $manager->flush();
+
         return $this;
     }
 
@@ -81,11 +66,5 @@ class CategoryService
         return $this->getRepository()->findAllNotDeleted();
     }
 
-    /**
-     * @return CategoryRepository
-     */
-    private function getRepository():CategoryRepository
-    {
-        return $this->getManager()->getRepository(Category::class);
-    }
+
 }

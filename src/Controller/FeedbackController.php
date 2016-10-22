@@ -1,14 +1,27 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\Controller;
 
 use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\Feedback;
 use He8us\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Service\FeedbackService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class FeedbackController
+ *
+ * @package He8us\FeedbackBundle\Controller
+ * @author Cedric Michaux <cedric@he8us.be>
+ */
 class FeedbackController extends Controller
 {
     /**
@@ -41,20 +54,23 @@ class FeedbackController extends Controller
     }
 
     /**
+     * @return Category[]
+     */
+    private function getCategories()
+    {
+        return $this->get('he8us_feedback.category_service')->getCategories();
+    }
+
+    /**
      * @param Request  $request
      * @param Feedback $feedback
      */
     private function persistFeedback(Request $request, Feedback $feedback): void
     {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $feedback
-            ->setReferrer($request->headers->get('referer'))
-            ->setSenderIp($request->getClientIp())
-            ->setStatus(Feedback::STATUS_NONE);
-
-        $entityManager->persist($feedback);
-        $entityManager->flush();
+        /** @var FeedbackService $feedbackService */
+        $feedbackService = $this->get('he8us_feedback.feedback_service');
+        $feedbackService->createFeedback($feedback, $request);
+        return true;
     }
 
     /**
@@ -67,7 +83,7 @@ class FeedbackController extends Controller
             || !$this->container->hasParameter('system_email')
             || !$this->container->hasParameter('project_name')
         ) {
-            return;
+            return false;
         }
 
         $translator = $this->get('translator');
@@ -79,14 +95,6 @@ class FeedbackController extends Controller
             ->setBody($feedback->getBody(), 'text/html');
 
         $this->get('mailer')->send($message);
-
-    }
-
-    /**
-     * @return Category[]
-     */
-    private function getCategories()
-    {
-        return $this->get('he8us_feedback.category_service')->getCategories();
+        return true;
     }
 }

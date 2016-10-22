@@ -57,7 +57,7 @@
 
                     self.find('.loading').hide();
                     self.find('.reported').show();
-                    return;
+                    return undefined;
                 })
                 .fail(function () {
                     failed();

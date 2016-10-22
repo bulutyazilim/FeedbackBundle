@@ -1,4 +1,10 @@
 <?php
+/**
+ * This file is part of the he8us/feedback package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace He8us\FeedbackBundle\DependencyInjection;
 
@@ -7,10 +13,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
+
 /**
- * This is the class that loads and manages your bundle configuration
+ * Class He8usFeedbackExtension
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @package He8us\FeedbackBundle\DependencyInjection
+ * @author Cedric Michaux <cedric@he8us.be>
  */
 class He8usFeedbackExtension extends Extension
 {
