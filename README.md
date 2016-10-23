@@ -1,9 +1,9 @@
 FeedbackBundle
 ==============
 
-FeedbackBundle for Symfony 2
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/build-status/master) 
 
-**This module is not yet functionnal**
+FeedbackBundle for Symfony 2
 
 Based on [bulutyazilim/FeedbackBundle](https://github.com/bulutyazilim/FeedbackBundle) but heavily modified to follow Symfony3 code style and best-practices
 
