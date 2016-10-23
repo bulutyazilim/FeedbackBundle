@@ -10,7 +10,7 @@ namespace He8us\FeedbackBundle\Controller;
 
 use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\Feedback;
-use He8us\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Form\Type\FeedbackWithCaptcha;
 use He8us\FeedbackBundle\Service\FeedbackService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,7 +32,7 @@ class FeedbackController extends Controller
     public function newAction(Request $request): JsonResponse
     {
         $feedback = new Feedback();
-        $form = $this->createForm(FeedbackType::class, $feedback, [
+        $form = $this->createForm(FeedbackWithCaptcha::class, $feedback, [
             'categories' => $this->getCategories(),
         ]);
 
@@ -40,7 +40,7 @@ class FeedbackController extends Controller
 
         if ($form->isValid()) {
             $this->persistFeedback($request, $feedback);
-            $this->sendMail($feedback);
+            $this->shouldSendMail($feedback);
 
             return JsonResponse::create([
                 'status' => true,
@@ -65,18 +65,19 @@ class FeedbackController extends Controller
      * @param Request  $request
      * @param Feedback $feedback
      */
-    private function persistFeedback(Request $request, Feedback $feedback): void
+    private function persistFeedback(Request $request, Feedback $feedback)
     {
         /** @var FeedbackService $feedbackService */
         $feedbackService = $this->get('he8us_feedback.feedback_service');
         $feedbackService->createFeedback($feedback, $request);
-        return true;
     }
 
     /**
      * @param Feedback $feedback
+     *
+     * @return bool
      */
-    private function sendMail(Feedback $feedback): void
+    private function shouldSendMail(Feedback $feedback): bool
     {
         if (
             !$this->container->hasParameter('feedback_email')

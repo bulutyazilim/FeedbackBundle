@@ -1,0 +1,80 @@
+Captcha: Captcha
+
+'Message send successfully':
+    '': 'Message send successfully.'
+
+'Reply:': 'Reply:'
+feedback: feedback
+feedback.close: feedback.close
+feedback.email: feedback.email
+feedback.fail: feedback.fail
+feedback.fail_long: feedback.fail_long
+feedback.message: feedback.message
+feedback.thank: feedback.thank
+feedback.thank_long: feedback.thank_long
+feedback.wait: feedback.wait
+
+he8us:
+    feedback:
+        layout:
+            category:
+                actions: Actions
+                back_to_list: 'Retour à la liste'
+                delete: Supprimer
+                deleted: Effacé
+
+                edit:
+                    title: Edition
+
+                id: ID
+                label: Label
+
+                list:
+                    create: 'Créer une nouvelle catégorie'
+                    edit: 'Editer'
+                    show: 'Details'
+                    title: 'Toutes les catégories'
+
+                name: Nom
+
+                new:
+                    create: Créer
+                    title: 'Nouvelle categorie'
+
+                'no': Non
+
+                show:
+                    title: 'Detail de la catégorie'
+
+                'yes': Oui
+
+            feedback:
+                list:
+                    actions: Actions
+                    category: Categorie
+                    delete: Effacer
+                    done: Fini
+                    id: ID
+                    ip: 'Adresse IP'
+
+                    markas:
+                        done: 'Marquer comme fini'
+                        read: 'Marquer comme lu'
+
+                    new: Nouveau
+                    nocontent: 'Pas de feedback'
+                    page: Page
+                    read: Lu
+                    sender: Expéditeur
+                    show_content: 'Voir le contenu'
+                    title: 'Liste des feedbacks'
+
+                reply:
+                    message: 'Votre Message'
+                    send: Envoyer
+                    subject: Sujet
+                    title: Répondre
+                    to: 'Réponse à'
+
+new:
+    feedback: new.feedback

@@ -26,7 +26,7 @@ class Category
      *
      * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $id;
 
@@ -47,7 +47,7 @@ class Category
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Feedback", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="He8us\FeedbackBundle\Entity\Feedback", mappedBy="category")
      */
     private $feedbacks;
 

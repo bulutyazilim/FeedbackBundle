@@ -1,15 +1,28 @@
 services:
-  he8us_feedback.extension:
-    class: He8us\FeedbackBundle\Twig\FeedbackExtension
-    arguments: ["@form.factory", "@twig", "@he8us_feedback.category_service"]
-    tags:
-      - { name: twig.extension }
+    he8us_feedback.extension:
+        class: He8us\FeedbackBundle\Twig\FeedbackExtension
+        arguments: ["@form.factory", "@twig", "@he8us_feedback.category_service"]
+        tags:
+            - { name: twig.extension }
 
 
-  he8us_feedback.category_service:
-    class: He8us\FeedbackBundle\Service\CategoryService
-    arguments: ["@doctrine"]
+    he8us_feedback.category_service:
+        class: He8us\FeedbackBundle\Service\CategoryService
+        arguments: ["@doctrine"]
 
-  he8us_feedback.feedback_service:
-    class: He8us\FeedbackBundle\Service\FeedbackService
-    arguments: ["@doctrine"]
+    he8us_feedback.feedback_service:
+        class: He8us\FeedbackBundle\Service\FeedbackService
+        arguments: ["@doctrine"]
+
+
+    he8us_feedback.form.feedback:
+        class: He8us\FeedbackBundle\Form\Type\FeedbackType
+        arguments: ["@he8us_feedback.category_service"]
+        tags:
+            - { name: form.type }
+
+    he8us_feedback.form.feedback_with_captcha:
+        class: He8us\FeedbackBundle\Form\Type\FeedbackWithCaptcha
+        arguments: ["@he8us_feedback.category_service"]
+        tags:
+            - { name: form.type }

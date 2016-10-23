@@ -11,6 +11,8 @@ namespace He8us\FeedbackBundle\Tests\Form\Type;
 
 use He8us\FeedbackBundle\Entity\Feedback;
 use He8us\FeedbackBundle\Form\Type\FeedbackType;
+use He8us\FeedbackBundle\Service\CategoryService;
+use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
@@ -21,6 +23,18 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class FeedbackTypeTest extends TypeTestCase
 {
+
+    protected function getExtensions()
+    {
+        $categoryService = $this->createMock(CategoryService::class);
+        $type = new FeedbackType($categoryService);
+
+        return array(
+            // register the type instances with the PreloadedExtension
+            new PreloadedExtension(array($type), array()),
+        );
+    }
+
     /**
      * @test
      */

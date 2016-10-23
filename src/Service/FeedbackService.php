@@ -42,7 +42,7 @@ class FeedbackService extends AbstractService
     /**
      * @param $id
      *
-     * @return null|Feedback
+     * @return Feedback|null
      */
     public function findById($id)
     {

@@ -35,13 +35,18 @@ class CategoryService extends AbstractService
         $category->setName($name);
         $category->setLabel(empty($label) ? $name : $label);
 
-        $manager = $this->getManager();
-        $manager->persist($category);
-        $manager->flush();
+        $this->save($category);
 
         return $category;
     }
 
+    public function save(Category $category)
+    {
+        $manager = $this->getManager();
+
+        $manager->persist($category);
+        $manager->flush();
+    }
 
     /**
      * @param Category $category
@@ -51,9 +56,8 @@ class CategoryService extends AbstractService
     public function deleteCategory(Category $category):CategoryService
     {
         $category->setDeleted(true);
-        $manager = $this->getManager();
-        $manager->persist($category);
-        $manager->flush();
+
+        $this->save($category);
 
         return $this;
     }
@@ -66,5 +70,10 @@ class CategoryService extends AbstractService
         return $this->getRepository()->findAllNotDeleted();
     }
 
+
+    public function getAllCategories()
+    {
+        return $this->getRepository()->findAll();
+    }
 
 }

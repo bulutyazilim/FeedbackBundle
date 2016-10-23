@@ -1,0 +1,34 @@
+<table>
+    <tbody>
+    <tr>
+        <th>{{ 'he8us.feedback.layout.category.id' | trans }}</th>
+        <td>{{ category.id }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'he8us.feedback.layout.category.name' | trans }}</th>
+        <td>{{ category.name }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'he8us.feedback.layout.category.label' | trans }}</th>
+        <td>{{ category.label }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'he8us.feedback.layout.category.deleted' | trans }}</th>
+        <td>{% if category.deleted %}{{ 'he8us.feedback.layout.category.yes' | trans }}{% else %}{{ 'he8us.feedback.layout.category.no' | trans }}{% endif %}</td>
+    </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('he8us_category_admin_homepage') }}">{{ 'he8us.feedback.layout.category.back_to_list' | trans }}</a>
+    </li>
+    <li>
+        <a href="{{ path('he8us_category_admin_edit', { 'id': category.id }) }}">Edit</a>
+    </li>
+    <li>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="{{ 'he8us.feedback.layout.category.delete' | trans }}">
+        {{ form_end(delete_form) }}
+    </li>
+</ul>

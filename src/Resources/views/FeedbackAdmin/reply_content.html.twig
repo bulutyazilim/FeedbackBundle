@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                {% if type == 'error' %} {% set type = 'danger' %} {% endif %}
+                <div class="alert alert-{{ type }}">
+                    {{ message|raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form action="{{ url('he8us_feedback_admin_reply',{id: message.id}) }}" method="post">
+            <div class="form-group">
+                <label for="Subject">{{ "he8us.feedback.layout.feedback.reply.subject"|trans }}</label>
+                <input class="form-control" type="text" id="Subject" name="message[subject]"
+                       value="{{ "Reply:"|trans }} {{ message.body[:100] }}"/>
+            </div>
+            <div class="form-group">
+                <label for="To">{{ "he8us.feedback.layout.feedback.reply.to"|trans }}</label>
+                <input class="form-control" type="text" id="To" value="{{ message.email }}" name="message[to]"/>
+            </div>
+            <div class="form-group">
+                <label for="Message">{{ "he8us.feedback.layout.feedback.reply.message"|trans }}</label>
+                <textarea class="form-control" name="message[body]" id="Message" cols="30" rows="10">
+
+    ----
+                    {{ message.body }}
+                    {{ "he8us.feedback.layout.feedback.reply.sender" }} {{ message.email }} [ {{ message.senderIp }} ]
+                    </textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary"
+                        type="submit">{{ "he8us.feedback.layout.feedback.reply.send"|trans }}</button>
+            </div>
+        </form>
+    </div>
+</div>

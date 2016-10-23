@@ -10,6 +10,7 @@ namespace He8us\FeedbackBundle\Form\Type;
 
 use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\Feedback;
+use He8us\FeedbackBundle\Service\CategoryService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -23,17 +24,36 @@ class FeedbackType extends AbstractType
 {
 
     /**
+     * @var CategoryService
+     */
+    private $categoryService;
+
+    public function __construct(CategoryService $service)
+    {
+        $this->categoryService = $service;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $categories = $this->categoryService->getCategories();
+
         $builder
             ->add('category', ChoiceType::class, [
-                'choices'      => $options['categories'],
+                'choices'      => $categories,
                 'choice_label' => function ($category) {
                     /** @var Category $category */
                     return $category->getLabel();
+                },
+                'choice_value' => function ($category) {
+                    /** @var Category $category */
+                    if ($category === null) {
+                        return null;
+                    }
+                    return $category->getId();
                 },
                 'label'        => false,
                 'attr'         => [

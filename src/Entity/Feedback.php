@@ -29,7 +29,7 @@ class Feedback
      *
      * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
 
@@ -81,7 +81,7 @@ class Feedback
 
     /**
      * @var Category
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="He8us\FeedbackBundle\Entity\Category", inversedBy="feedbacks")
      */
     protected $category;
 

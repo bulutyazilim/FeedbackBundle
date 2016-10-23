@@ -9,6 +9,7 @@
 namespace He8us\FeedbackBundle\Controller;
 
 use He8us\FeedbackBundle\Entity\Feedback;
+use He8us\FeedbackBundle\Service\FeedbackService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,34 +30,24 @@ class FeedbackAdminController extends Controller
      *
      * @return Response
      */
-    public function indexAction(string $status = Feedback::STATUS_NONE): Response
+    public function indexAction(string $status): Response
     {
-        if ($status !== Feedback::STATUS_DONE || $status !== Feedback::STATUS_READ) {
+        if ($status !== Feedback::STATUS_DONE && $status !== Feedback::STATUS_READ) {
             $status = Feedback::STATUS_NONE;
         }
 
-        $data = [];
-
-        $data['status'] = $status;
-        $data['entities'] = $this->getFeedbackService()->findByStatus($status);
-        $data['categories'] = $this->getCategoriesService()->getCategories();
-        return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", $data);
+        return $this->render("He8usFeedbackBundle:FeedbackAdmin:index.html.twig", [
+            'status'    => $status,
+            'feedbacks' => $this->getFeedbackService()->findByStatus($status),
+        ]);
     }
 
     /**
-     * @return object
+     * @return FeedbackService
      */
-    private function getFeedbackService():object
+    private function getFeedbackService():FeedbackService
     {
         return $this->get('he8us_feedback.feedback_service');
-    }
-
-    /**
-     * @return object
-     */
-    private function getCategoriesService():object
-    {
-        return $this->get("he8us_feedback.categories_service");
     }
 
     /**
@@ -96,12 +87,11 @@ class FeedbackAdminController extends Controller
      *
      * @throws NotFoundHttpException
      */
-    private function validateRequest(Request $request):void
+    private function validateRequest(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException("Not found!");
         }
-        return true;
     }
 
     /**
@@ -109,13 +99,11 @@ class FeedbackAdminController extends Controller
      *
      * @throws NotFoundHttpException
      */
-    private function validateFeedback(Feedback $feedback):void
+    private function validateFeedback(Feedback $feedback = null)
     {
         if (!$feedback) {
             throw new NotFoundHttpException("Not found!");
         }
-
-        return true;
     }
 
     /**

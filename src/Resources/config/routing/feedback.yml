@@ -1,0 +1,37 @@
+he8us_feedback_admin_homepage:
+    path:     /{status}
+    defaults:
+        _controller: "He8usFeedbackBundle:FeedbackAdmin:index"
+        status: 'none'
+    requirements:
+        status: 'none|read|done'
+
+
+he8us_feedback_admin_inbox:
+    path:     /inbox
+    defaults:
+        _controller: "He8usFeedbackBundle:Feedback:inbox"
+
+he8us_feedback_admin_delete:
+    path:     /remove/{id}
+    defaults:
+        _controller: "He8usFeedbackBundle:FeedbackAdmin:delete"
+    methods: [DELETE]
+
+he8us_feedback_admin_mark_read:
+    path:     /mark/read/{id}
+    defaults:
+        _controller: "He8usFeedbackBundle:FeedbackAdmin:markAs"
+        type: 'read'
+
+
+he8us_feedback_admin_mark_done:
+    path:     /mark/done/{id}
+    defaults:
+        _controller: "He8usFeedbackBundle:FeedbackAdmin:markAs"
+        type: 'done'
+
+he8us_feedback_admin_reply:
+    path:     /reply/{id}
+    defaults:
+        _controller: "He8usFeedbackBundle:FeedbackAdmin:reply"
