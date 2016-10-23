@@ -1,0 +1,95 @@
+@media (max-width: 360px) {
+    #feedback_wrapper_div {
+        height: 100%;
+    }
+
+    #feedback_wrapper_div-form {
+        width: 100%;
+        padding-top: 30px;
+    }
+
+    #feedback_wrapper_div-form .btn-close i {
+        font-size: 3em;
+    }
+}
+
+@media print {
+    #feedback_wrapper_div, #feedback_wrapper_div * {
+        display: none !important;
+    }
+}
+
+#feedback_wrapper_div .btn-circle.btn-lg {
+    width: 40px;
+    height: 40px;
+    padding: 5px 8px;
+    font-size: 12px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+#feedback_wrapper_div {
+    position: fixed;
+}
+
+#feedback_wrapper_div textarea {
+    height: 180px;
+}
+
+#feedback_wrapper_div .screenshot {
+    position: relative;
+    top: -24px;
+    right: 10px;
+    opacity: .6
+}
+
+#feedback_wrapper_div .screenshot:hover {
+    opacity: 1
+}
+
+#feedback_wrapper_div .reported p, #feedback_wrapper_div .failed p {
+    height: 190px
+}
+
+#feedback_wrapper_div.left {
+    left: 5px;
+    bottom: 15px
+}
+
+#feedback_wrapper_div.right {
+    right: 5px;
+    bottom: 15px
+}
+
+#feedback_wrapper_div .dropdown-menu {
+    width: 290px;
+    height: auto;
+    bottom: 50px;
+}
+
+#feedback_wrapper_div.left .dropdown-menu {
+    left: 0
+}
+
+#feedback_wrapper_div.right .dropdown-menu {
+    right: 0
+}
+
+#feedback_wrapper_div .hideme {
+    display: none
+}
+
+#feedback_wrapper_div #feedback-button {
+    background: yellow
+}
+
+#feedback_wrapper_div #close-button {
+    top: 1px;
+    right: 1px;
+    position: absolute;
+}
+
+.admin-screenshot-preview-image {
+    max-height: 150px;
+    max-width: 200px;
+}

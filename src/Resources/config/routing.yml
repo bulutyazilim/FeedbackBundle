@@ -1,0 +1,11 @@
+he8us_feedback_new:
+    path:     /feedback/new
+    defaults: { _controller: "He8usFeedbackBundle:Feedback:new" }
+
+he8us_feedback_admin:
+    resource: "@He8usFeedbackBundle/Resources/config/routing/feedback.yml"
+    prefix: /admin/feedback
+
+he8us_category_category:
+    resource: "@He8usFeedbackBundle/Resources/config/routing/category.yml"
+    prefix:   /admin/category

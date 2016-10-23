@@ -1,0 +1,82 @@
+{% set STATUS_NONE = constant('He8us\\FeedbackBundle\\Entity\\Feedback::STATUS_NONE') %}
+{% set STATUS_READ = constant('He8us\\FeedbackBundle\\Entity\\Feedback::STATUS_READ') %}
+{% set STATUS_DONE = constant('He8us\\FeedbackBundle\\Entity\\Feedback::STATUS_DONE') %}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" {% if status==STATUS_NONE %}class="active"{% endif %}>
+        <a href="{{ url('he8us_feedback_admin_homepage') }}">{{ "he8us.feedback.layout.feedback.list.new"|trans }}</a>
+    </li>
+    <li role="presentation" {% if status==STATUS_READ %}class="active"{% endif %}>
+        <a href="{{ url('he8us_feedback_admin_homepage', {status: STATUS_READ}) }}">{{ "he8us.feedback.layout.feedback.list.read"|trans }}</a>
+    </li>
+    <li role="presentation" {% if status==STATUS_DONE %}class="active"{% endif %}>
+        <a href="{{ url('he8us_feedback_admin_homepage',{status: STATUS_DONE}) }}">{{ "he8us.feedback.layout.feedback.list.done"|trans }}</a>
+    </li>
+</ul>
+<table class="table responsive-table table-bordered js-feedback">
+    <thead>
+    <tr>
+        <th>{{ 'he8us.feedback.layout.feedback.list.id'|trans }}</th>
+        <th>{{ 'he8us.feedback.layout.feedback.list.sender'|trans }}</th>
+        <th>{{ 'he8us.feedback.layout.feedback.list.category'|trans }}</th>
+        <th>{{ 'he8us.feedback.layout.feedback.list.ip'|trans }}</th>
+        <th>{{ 'he8us.feedback.layout.feedback.list.page'|trans }}</th>
+        <th>{{ 'he8us.feedback.layout.feedback.list.actions'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for feedback in feedbacks %}
+        <tr class="js-feedback-item" data-item-id="{{ feedback.id }}">
+            <td>{{ feedback.id }}</td>
+            <td>{{ feedback.email }}</td>
+            <td>{{ feedback.category.name }}</td>
+            <td>{{ feedback.senderIp }}</td>
+            <td>{{ feedback.referrer }}</td>
+            <td>
+                <a href="#" class="feedback-show-content js-feedback-item-show"
+                   title="{{ "he8us.feedback.layout.feedback.list.show_content"|trans }}">
+                    <i class="fa fa-bars"></i>
+                </a>
+
+                <a href="#" class="feedback-mark-as-read js-feedback-item-markas-read"
+                   title="{{ "he8us.feedback.layout.feedback.list.markas.read"|trans }}">
+                    <i class="fa fa-circle"></i>
+                </a>
+
+                <a href="#" class="feedback-mark-as-done js-feedback-item-markas-done"
+                   title="{{ "he8us.feedback.layout.feedback.list.markas.done"|trans }}">
+                    <i class="fa fa-check-circle"></i>
+                </a>
+
+                <a href="#" class="feedback-delete js-feedback-item-delete"
+                   title="{{ "he8us.feedback.layout.feedback.list.delete"|trans }}">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        <tr id="entity_{{ feedback.id }}" style="display: none">
+            <td colspan="6">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ feedback.body }}
+
+                        <hr/>
+                        {% if feedback.screenshot is not null %}
+                            <a href="{{ feedback.screenshot }}" target="_blank">
+                                <img src="{{ feedback.screenshot }}" class="admin-screenshot-preview-image"/>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">
+                <div class="alert alert-info">{{ "he8us.feedback.layout.feedback.list.nocontent"|trans }}</div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

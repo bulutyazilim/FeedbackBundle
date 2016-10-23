@@ -1,0 +1,24 @@
+he8us_category_admin_homepage:
+    path:     /
+    defaults: { _controller: "He8usFeedbackBundle:Category:index" }
+    methods:  GET
+
+he8us_category_admin_show:
+    path:     /{id}/show
+    defaults: { _controller: "He8usFeedbackBundle:Category:show" }
+    methods:  GET
+
+he8us_category_admin_new:
+    path:     /new
+    defaults: { _controller: "He8usFeedbackBundle:Category:new" }
+    methods:  [GET, POST]
+
+he8us_category_admin_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "He8usFeedbackBundle:Category:edit" }
+    methods:  [GET, POST]
+
+he8us_category_admin_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "He8usFeedbackBundle:Category:delete" }
+    methods:  DELETE

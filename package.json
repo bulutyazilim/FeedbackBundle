@@ -1,0 +1,14 @@
+{
+  "name": "FeedbackBundle",
+  "version": "3.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:he8us/FeedbackBundle.git",
+    "type": "git"
+  },
+  "author": "Cedric Michaux <cedric@he8us.be>",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^3.8.1"
+  }
+}

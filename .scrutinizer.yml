@@ -1,0 +1,25 @@
+checks:
+    php: true
+    javascript: true
+
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - '*.min.js'
+
+build:
+    environment:
+        php:
+            version: '7.0.8'
+    tests:
+        override:
+            - eslint-run Resources/public/js
+            - phpunit -c phpunit.xml
+
+build_failure_conditions:
+    - 'elements.rating(<= D).exists'
+    - 'elements.rating(<= D).new.exists'
+    - 'issues.label("coding-style").exists'
+    - 'issues.label("coding-style").new.exists'
+    - 'issues.severity(>= MAJOR).new.exists'
+    - 'project.metric("scrutinizer.quality", < 8)'

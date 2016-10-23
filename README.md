@@ -1,26 +1,25 @@
 FeedbackBundle
 ==============
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/he8us/FeedbackBundle/build-status/master) 
+
 FeedbackBundle for Symfony 2
 
-![image](https://cloud.githubusercontent.com/assets/182906/11544971/61d93210-994d-11e5-826a-aa1f1301f8a9.png)
-
+Based on [bulutyazilim/FeedbackBundle](https://github.com/bulutyazilim/FeedbackBundle) but heavily modified to follow Symfony3 code style and best-practices
 
 ##Installation
 
 ###Step 1
 
-add
+Require the package
 ```
-composer require --dev "bulutyazilim/feedback-bundle":"dev-master"
-
+composer require "he8us/feedback-bundle"
 ```
 
-to `require` block of your composer.json
 
 ###Step 2
 
-add this line to your app/AppKernel.php file
+add this those lines to your app/AppKernel.php file
 
 ```php
 <?php
@@ -35,8 +34,9 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-
-            new BulutYazilim\FeedbackBundle\BulutYazilimFeedbackBundle(),
+            // We depends on this bundle so you need to require it
+            new \Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new He8us\FeedbackBundle\He8usFeedbackBundle(),
         );
 
         // ...
@@ -51,51 +51,56 @@ class AppKernel extends Kernel
 import routing 
 
 ```yml
+# We depends on this bundle so you need to require it's routes
+captcha:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
+    prefix: /
+
 feedback:
-    resource: "@BulutYazilimFeedbackBundle/Resources/config/routing.yml"
+    resource: "@He8usFeedbackBundle/Resources/config/routing.yml"
     prefix:   /
 ```
 
 ## Step 4
 
 add configurations to app/config.yml
+Do not forget to define your base view
 
 ```yml
+gregwar_captcha: ~
+
 # Twig Configuration    
 twig:
     globals:
-        admin_base_view: '::ojs_base.html.twig'
+        admin_base_view: '::base.html.twig'
 ```
 
 ## Step 5
 
-add style and css files to your layout.
+add CSS and Javascript files to your layout.
 
-```yml
-- @BulutYazilimFeedbackBundle/Resources/public/js/feedback.js
-- @BulutYazilimFeedbackBundle/Resources/public/js/admin.js
-- @BulutYazilimFeedbackBundle/Resources/public/css/feedback.css
+```html
+    <!-- Add the CSS in the <head></head> of your template
+    <link rel="stylesheet" href="{{ asset("bundles/he8usfeedback/css/feedback.css") }}"/>
+</head>
+```
+
+```html
+    <!-- Add the javascript at the very end of your HTML -->
+    <script src="{{ asset('bundles/he8usfeedback/js/feedback.js') }}"></script>
+    <script src="{{ asset('bundles/he8usfeedback/js/admin.js') }}"></script>
+    <script src="{{ asset('bundles/he8usfeedback/js/html2canvas.min.js') }}"></script>
+
+</body>
 ```
 
 ## Step 6
 
-add parameters.yml following lines
-```yml
-feedback_categories:
-        -
-            id: 1
-            name: "General"
-        -
-            id: 2
-            name: "Bug Report"
-        -
-            id: 3
-            name: "Idea"
-```
+Set some categories 
 
 ## step 7
 
 add following before `</body>` in your twig file
-```
+```html
 {{ feedback_widget()|raw }}
 ```
