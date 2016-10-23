@@ -9,6 +9,7 @@
 namespace He8us\FeedbackBundle\Tests\Service;
 
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use He8us\FeedbackBundle\Entity\Category;
 use He8us\FeedbackBundle\Entity\CategoryRepository;
 use He8us\FeedbackBundle\Service\CategoryService;
@@ -104,6 +105,29 @@ class CategoryServiceTest extends ServiceTestCase
 
 
         $categoryService->getCategories();
+    }
+
+    public function testCategoryServiceWillFindAllCategories()
+    {
+        $categoryTestData = [
+            new Category,
+            new Category,
+            new Category,
+        ];
+
+        $categoryRepository = $this->mockRepository(CategoryRepository::class);
+        $categoryRepository
+            ->expects($this->any())
+            ->method("findAll")
+            ->willReturn($categoryTestData);
+
+        $entityManager = $this->mockEntityManager($categoryRepository, Category::class);
+        $managerRegistry = $this->mockManagerRegistry($entityManager, Category::class);
+
+        $categoryService = new CategoryService($managerRegistry);
+        $returnedCategoryData = $categoryService->getAllCategories();
+
+        $this->assertSame($categoryTestData, $returnedCategoryData);
     }
 
 }
